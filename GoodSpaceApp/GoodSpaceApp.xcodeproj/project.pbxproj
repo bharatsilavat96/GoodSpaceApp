@@ -7,22 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E57DB2B1E3D7000EFCE3A /* Network.swift */; };
+		365FC4F42B1E6C8F00412FF4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4F32B1E6C8F00412FF4 /* UIViewExtension.swift */; };
+		365FC4F62B1E6C9500412FF4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4F52B1E6C9500412FF4 /* UIColorExtension.swift */; };
+		365FC4FB2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */; };
+		365FC4FE2B1E6EB000412FF4 /* Poppins in Resources */ = {isa = PBXBuildFile; fileRef = 365FC4FD2B1E6EAF00412FF4 /* Poppins */; };
+		365FC5022B1E787200412FF4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365FC5012B1E787200412FF4 /* Launch Screen.storyboard */; };
 		36E233622B1E2D22001AE0D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E233612B1E2D22001AE0D5 /* AppDelegate.swift */; };
 		36E233642B1E2D22001AE0D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E233632B1E2D22001AE0D5 /* SceneDelegate.swift */; };
 		36E233662B1E2D22001AE0D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E233652B1E2D22001AE0D5 /* ViewController.swift */; };
 		36E233692B1E2D22001AE0D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E233672B1E2D22001AE0D5 /* Main.storyboard */; };
 		36E2336B2B1E2D23001AE0D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E2336A2B1E2D23001AE0D5 /* Assets.xcassets */; };
-		36E2336E2B1E2D23001AE0D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E2336C2B1E2D23001AE0D5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		361E57DB2B1E3D7000EFCE3A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		365FC4F32B1E6C8F00412FF4 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		365FC4F52B1E6C9500412FF4 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSplashScreenViewController.swift; sourceTree = "<group>"; };
+		365FC4FD2B1E6EAF00412FF4 /* Poppins */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Poppins; sourceTree = "<group>"; };
+		365FC5012B1E787200412FF4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		36E2335E2B1E2D22001AE0D5 /* GoodSpaceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodSpaceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E233612B1E2D22001AE0D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36E233632B1E2D22001AE0D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		36E233652B1E2D22001AE0D5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		36E233682B1E2D22001AE0D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		36E2336A2B1E2D23001AE0D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		36E2336D2B1E2D23001AE0D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36E2336F2B1E2D23001AE0D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -37,9 +47,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		361E57DA2B1E3D6000EFCE3A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				361E57DB2B1E3D7000EFCE3A /* Network.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		365FC4F22B1E6C8000412FF4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				365FC4F32B1E6C8F00412FF4 /* UIViewExtension.swift */,
+				365FC4F52B1E6C9500412FF4 /* UIColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		365FC4F72B1E6CF500412FF4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		365FC4F82B1E6CFF00412FF4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		365FC4F92B1E6D0700412FF4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		365FC4FC2B1E6E9F00412FF4 /* CustomFonts */ = {
+			isa = PBXGroup;
+			children = (
+				365FC4FD2B1E6EAF00412FF4 /* Poppins */,
+			);
+			path = CustomFonts;
+			sourceTree = "<group>";
+		};
 		36E233552B1E2D22001AE0D5 = {
 			isa = PBXGroup;
 			children = (
+				365FC4FC2B1E6E9F00412FF4 /* CustomFonts */,
+				361E57DA2B1E3D6000EFCE3A /* Networking */,
+				365FC4F22B1E6C8000412FF4 /* Extensions */,
+				365FC4F72B1E6CF500412FF4 /* Model */,
+				365FC4F82B1E6CFF00412FF4 /* View */,
+				365FC4F92B1E6D0700412FF4 /* ViewModel */,
 				36E233602B1E2D22001AE0D5 /* GoodSpaceApp */,
 				36E2335F2B1E2D22001AE0D5 /* Products */,
 			);
@@ -61,7 +124,7 @@
 				36E233652B1E2D22001AE0D5 /* ViewController.swift */,
 				36E233672B1E2D22001AE0D5 /* Main.storyboard */,
 				36E2336A2B1E2D23001AE0D5 /* Assets.xcassets */,
-				36E2336C2B1E2D23001AE0D5 /* LaunchScreen.storyboard */,
+				365FC5012B1E787200412FF4 /* Launch Screen.storyboard */,
 				36E2336F2B1E2D23001AE0D5 /* Info.plist */,
 			);
 			path = GoodSpaceApp;
@@ -125,8 +188,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36E2336E2B1E2D23001AE0D5 /* LaunchScreen.storyboard in Resources */,
+				365FC4FE2B1E6EB000412FF4 /* Poppins in Resources */,
 				36E2336B2B1E2D23001AE0D5 /* Assets.xcassets in Resources */,
+				365FC5022B1E787200412FF4 /* Launch Screen.storyboard in Resources */,
 				36E233692B1E2D22001AE0D5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +202,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365FC4F42B1E6C8F00412FF4 /* UIViewExtension.swift in Sources */,
+				365FC4FB2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift in Sources */,
 				36E233662B1E2D22001AE0D5 /* ViewController.swift in Sources */,
 				36E233622B1E2D22001AE0D5 /* AppDelegate.swift in Sources */,
+				361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */,
 				36E233642B1E2D22001AE0D5 /* SceneDelegate.swift in Sources */,
+				365FC4F62B1E6C9500412FF4 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,14 +221,6 @@
 				36E233682B1E2D22001AE0D5 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		36E2336C2B1E2D23001AE0D5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				36E2336D2B1E2D23001AE0D5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -289,8 +349,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GoodSpaceApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Good Space";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -316,8 +377,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GoodSpaceApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Good Space";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
