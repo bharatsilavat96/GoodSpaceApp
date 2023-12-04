@@ -13,6 +13,10 @@
 		365FC4FB2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */; };
 		365FC4FE2B1E6EB000412FF4 /* Poppins in Resources */ = {isa = PBXBuildFile; fileRef = 365FC4FD2B1E6EAF00412FF4 /* Poppins */; };
 		365FC5022B1E787200412FF4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365FC5012B1E787200412FF4 /* Launch Screen.storyboard */; };
+		365FC5042B1E8A7900412FF4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC5032B1E8A7900412FF4 /* SignInViewController.swift */; };
+		365FC5062B1E8AD700412FF4 /* VerifyOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC5052B1E8AD700412FF4 /* VerifyOTPViewController.swift */; };
+		365FC5082B1E8B0200412FF4 /* CorrectPhoneNumberPOPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC5072B1E8B0200412FF4 /* CorrectPhoneNumberPOPViewController.swift */; };
+		365FC50A2B1E930B00412FF4 /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC5092B1E930B00412FF4 /* DashBoardViewController.swift */; };
 		36E233622B1E2D22001AE0D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E233612B1E2D22001AE0D5 /* AppDelegate.swift */; };
 		36E233642B1E2D22001AE0D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E233632B1E2D22001AE0D5 /* SceneDelegate.swift */; };
 		36E233662B1E2D22001AE0D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E233652B1E2D22001AE0D5 /* ViewController.swift */; };
@@ -27,6 +31,10 @@
 		365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSplashScreenViewController.swift; sourceTree = "<group>"; };
 		365FC4FD2B1E6EAF00412FF4 /* Poppins */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Poppins; sourceTree = "<group>"; };
 		365FC5012B1E787200412FF4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		365FC5032B1E8A7900412FF4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		365FC5052B1E8AD700412FF4 /* VerifyOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPViewController.swift; sourceTree = "<group>"; };
+		365FC5072B1E8B0200412FF4 /* CorrectPhoneNumberPOPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectPhoneNumberPOPViewController.swift; sourceTree = "<group>"; };
+		365FC5092B1E930B00412FF4 /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
 		36E2335E2B1E2D22001AE0D5 /* GoodSpaceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodSpaceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E233612B1E2D22001AE0D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36E233632B1E2D22001AE0D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +83,10 @@
 			isa = PBXGroup;
 			children = (
 				365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */,
+				365FC5032B1E8A7900412FF4 /* SignInViewController.swift */,
+				365FC5052B1E8AD700412FF4 /* VerifyOTPViewController.swift */,
+				365FC5072B1E8B0200412FF4 /* CorrectPhoneNumberPOPViewController.swift */,
+				365FC5092B1E930B00412FF4 /* DashBoardViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,7 +218,11 @@
 				365FC4FB2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift in Sources */,
 				36E233662B1E2D22001AE0D5 /* ViewController.swift in Sources */,
 				36E233622B1E2D22001AE0D5 /* AppDelegate.swift in Sources */,
+				365FC5042B1E8A7900412FF4 /* SignInViewController.swift in Sources */,
+				365FC5082B1E8B0200412FF4 /* CorrectPhoneNumberPOPViewController.swift in Sources */,
+				365FC5062B1E8AD700412FF4 /* VerifyOTPViewController.swift in Sources */,
 				361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */,
+				365FC50A2B1E930B00412FF4 /* DashBoardViewController.swift in Sources */,
 				36E233642B1E2D22001AE0D5 /* SceneDelegate.swift in Sources */,
 				365FC4F62B1E6C9500412FF4 /* UIColorExtension.swift in Sources */,
 			);
