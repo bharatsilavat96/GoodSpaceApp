@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E57DB2B1E3D7000EFCE3A /* Network.swift */; };
+		363267CA2B1EC77A000376F5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267C92B1EC77A000376F5 /* LoginViewModel.swift */; };
+		363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267CB2B1EC81D000376F5 /* LoginModel.swift */; };
 		365FC4F42B1E6C8F00412FF4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4F32B1E6C8F00412FF4 /* UIViewExtension.swift */; };
 		365FC4F62B1E6C9500412FF4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4F52B1E6C9500412FF4 /* UIColorExtension.swift */; };
 		365FC4FB2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */; };
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		361E57DB2B1E3D7000EFCE3A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		363267C92B1EC77A000376F5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		363267CB2B1EC81D000376F5 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		365FC4F32B1E6C8F00412FF4 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		365FC4F52B1E6C9500412FF4 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSplashScreenViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 		365FC4F72B1E6CF500412FF4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				363267CB2B1EC81D000376F5 /* LoginModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -94,6 +99,7 @@
 		365FC4F92B1E6D0700412FF4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				363267C92B1EC77A000376F5 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -222,6 +228,8 @@
 				365FC5082B1E8B0200412FF4 /* CorrectPhoneNumberPOPViewController.swift in Sources */,
 				365FC5062B1E8AD700412FF4 /* VerifyOTPViewController.swift in Sources */,
 				361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */,
+				363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */,
+				363267CA2B1EC77A000376F5 /* LoginViewModel.swift in Sources */,
 				365FC50A2B1E930B00412FF4 /* DashBoardViewController.swift in Sources */,
 				36E233642B1E2D22001AE0D5 /* SceneDelegate.swift in Sources */,
 				365FC4F62B1E6C9500412FF4 /* UIColorExtension.swift in Sources */,

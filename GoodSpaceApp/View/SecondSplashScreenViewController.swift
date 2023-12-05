@@ -17,11 +17,10 @@ class SecondSplashScreenViewController: UIViewController {
     }
     @objc func showNextScreen() {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let secondSplashViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
+            if let secondSplashViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController {
                 secondSplashViewController.modalPresentationStyle = .overFullScreen
                 secondSplashViewController.modalTransitionStyle = .crossDissolve
                 present(secondSplashViewController, animated: true, completion: nil)
             }
         }
-    
 }
