@@ -12,6 +12,13 @@
 		363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267CB2B1EC81D000376F5 /* LoginModel.swift */; };
 		363267CF2B1EF1BB000376F5 /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267CE2B1EF1BB000376F5 /* ValidationManager.swift */; };
 		363267D12B1EF483000376F5 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267D02B1EF483000376F5 /* StringExtension.swift */; };
+		365D35DC2B1F887E00A88D60 /* CustomNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D35DB2B1F887E00A88D60 /* CustomNavigationViewController.swift */; };
+		365D35DF2B1F8B1C00A88D60 /* WorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D35DE2B1F8B1C00A88D60 /* WorkViewController.swift */; };
+		365D35E12B1F8B2B00A88D60 /* RecruitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D35E02B1F8B2B00A88D60 /* RecruitViewController.swift */; };
+		365D35E32B1F8B3900A88D60 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D35E22B1F8B3800A88D60 /* SocialViewController.swift */; };
+		365D35E52B1F8B4300A88D60 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D35E42B1F8B4300A88D60 /* MessageViewController.swift */; };
+		365D35E72B1F8B5200A88D60 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D35E62B1F8B5200A88D60 /* ProfileViewController.swift */; };
+		365D35E92B1F97BC00A88D60 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D35E82B1F97BC00A88D60 /* CircularProgressView.swift */; };
 		365FC4F42B1E6C8F00412FF4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4F32B1E6C8F00412FF4 /* UIViewExtension.swift */; };
 		365FC4F62B1E6C9500412FF4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4F52B1E6C9500412FF4 /* UIColorExtension.swift */; };
 		365FC4FB2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */; };
@@ -36,6 +43,13 @@
 		363267CB2B1EC81D000376F5 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		363267CE2B1EF1BB000376F5 /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		363267D02B1EF483000376F5 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		365D35DB2B1F887E00A88D60 /* CustomNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewController.swift; sourceTree = "<group>"; };
+		365D35DE2B1F8B1C00A88D60 /* WorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkViewController.swift; sourceTree = "<group>"; };
+		365D35E02B1F8B2B00A88D60 /* RecruitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitViewController.swift; sourceTree = "<group>"; };
+		365D35E22B1F8B3800A88D60 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		365D35E42B1F8B4300A88D60 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		365D35E62B1F8B5200A88D60 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		365D35E82B1F97BC00A88D60 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		365FC4F32B1E6C8F00412FF4 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		365FC4F52B1E6C9500412FF4 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSplashScreenViewController.swift; sourceTree = "<group>"; };
@@ -79,8 +93,21 @@
 			isa = PBXGroup;
 			children = (
 				363267CE2B1EF1BB000376F5 /* ValidationManager.swift */,
+				365D35E82B1F97BC00A88D60 /* CircularProgressView.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		365D35DD2B1F8ADE00A88D60 /* TabBarControllers */ = {
+			isa = PBXGroup;
+			children = (
+				365D35DE2B1F8B1C00A88D60 /* WorkViewController.swift */,
+				365D35E02B1F8B2B00A88D60 /* RecruitViewController.swift */,
+				365D35E22B1F8B3800A88D60 /* SocialViewController.swift */,
+				365D35E42B1F8B4300A88D60 /* MessageViewController.swift */,
+				365D35E62B1F8B5200A88D60 /* ProfileViewController.swift */,
+			);
+			path = TabBarControllers;
 			sourceTree = "<group>";
 		};
 		365FC4F22B1E6C8000412FF4 /* Extensions */ = {
@@ -105,11 +132,13 @@
 		365FC4F82B1E6CFF00412FF4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				365D35DD2B1F8ADE00A88D60 /* TabBarControllers */,
 				365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */,
 				365FC5032B1E8A7900412FF4 /* SignInViewController.swift */,
 				365FC5052B1E8AD700412FF4 /* VerifyOTPViewController.swift */,
 				365FC5072B1E8B0200412FF4 /* CorrectPhoneNumberPOPViewController.swift */,
 				365FC5092B1E930B00412FF4 /* DashBoardViewController.swift */,
+				365D35DB2B1F887E00A88D60 /* CustomNavigationViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,13 +276,20 @@
 				36E233662B1E2D22001AE0D5 /* ViewController.swift in Sources */,
 				36E233622B1E2D22001AE0D5 /* AppDelegate.swift in Sources */,
 				365FC5042B1E8A7900412FF4 /* SignInViewController.swift in Sources */,
+				365D35E12B1F8B2B00A88D60 /* RecruitViewController.swift in Sources */,
+				365D35DC2B1F887E00A88D60 /* CustomNavigationViewController.swift in Sources */,
+				365D35E32B1F8B3900A88D60 /* SocialViewController.swift in Sources */,
+				365D35E92B1F97BC00A88D60 /* CircularProgressView.swift in Sources */,
 				365FC5082B1E8B0200412FF4 /* CorrectPhoneNumberPOPViewController.swift in Sources */,
+				365D35DF2B1F8B1C00A88D60 /* WorkViewController.swift in Sources */,
 				363267CF2B1EF1BB000376F5 /* ValidationManager.swift in Sources */,
 				365FC5062B1E8AD700412FF4 /* VerifyOTPViewController.swift in Sources */,
 				361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */,
+				365D35E72B1F8B5200A88D60 /* ProfileViewController.swift in Sources */,
 				36E8822E2B1F58140094A35C /* VerifyPhoneNumberModel.swift in Sources */,
 				363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */,
 				363267CA2B1EC77A000376F5 /* LoginViewModel.swift in Sources */,
+				365D35E52B1F8B4300A88D60 /* MessageViewController.swift in Sources */,
 				365FC50A2B1E930B00412FF4 /* DashBoardViewController.swift in Sources */,
 				36E233642B1E2D22001AE0D5 /* SceneDelegate.swift in Sources */,
 				365FC4F62B1E6C9500412FF4 /* UIColorExtension.swift in Sources */,

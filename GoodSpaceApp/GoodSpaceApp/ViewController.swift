@@ -19,9 +19,6 @@ class ViewController: UIViewController{
         deviceID = getDeviceID()
     }
     
-    
-    
-    
     func getDeviceID() -> String {
         if let identifierForVendor = UIDevice.current.identifierForVendor {
             print(identifierForVendor.uuidString)

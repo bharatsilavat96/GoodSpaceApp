@@ -43,6 +43,7 @@ class SignInViewController: UIViewController,LoginViewModelDelegate {
         if ValidationManager.isValidPhoneNumber(phoneNumber){
             loginViewModel?.loginUser(withMobileNumber: phoneNumber, deviceId: deviceId)
             let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPViewController") as! VerifyOTPViewController
+            verifyOtpViewController.mobileNumber = "\(phoneNumber)"
             verifyOtpViewController.modalPresentationStyle = .overCurrentContext
             self.present(verifyOtpViewController, animated: false)
         }else {

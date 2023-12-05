@@ -48,7 +48,7 @@ struct VerifyDataModel: Codable {
     let atLeastHiringSelected: Bool?
     let userMode: String?
     let needToDoOnboarding: Bool?
-    let previousUserMode: [PreviousModel]?
+    let previousUserMode: PreviousModel?
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -113,7 +113,7 @@ struct VerifyDataModel: Codable {
         self.atLeastHiringSelected = try container.decodeIfPresent(Bool.self, forKey: .atLeastHiringSelected)
         self.userMode = try container.decodeIfPresent(String.self, forKey: .userMode)
         self.needToDoOnboarding = try container.decodeIfPresent(Bool.self, forKey: .needToDoOnboarding)
-        self.previousUserMode = try container.decodeIfPresent([PreviousModel].self, forKey: .previousUserMode)
+        self.previousUserMode = try container.decodeIfPresent(PreviousModel.self, forKey: .previousUserMode)
     }
     
 }
@@ -138,31 +138,3 @@ struct PreviousModel: Codable {
     }
     
 }
-/*
- {
-     "message": "Your OTP has been successfully verified",
-     "data": {
-         "user_id": 500937967,
-         "country_code": "+91",
-         "image_id": "https://esocialbucket.s3.ap-south-1.amazonaws.com/default+avatar.png",
-         "name": "Bharat Shilavat",
-         "email_id": "bharatsilavat96@gmail.com",
-         "status": 3,
-         "account_type_id": 1,
-         "purchase_validity": null,
-         "invite_link": "https://ourgoodspace.page.link/eFgqjRGnpPdes5sXA",
-         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTAwOTM3OTY3LCJpYXQiOjE3MDE3ODE4NTV9.ZXXscqUym8gWF5buRgZE5ESRgxHzsCCVllc3MIxSOZs",
-         "mobile_number": "9340536820",
-         "is_premium": 0,
-         "inviteLink": "https://ourgoodspace.page.link/eFgqjRGnpPdes5sXA",
-         "isHiringSelected": false,
-         "atLeastHiringSelected": false,
-         "userMode": "JOB_SEEKER",
-         "needToDoOnboarding": false,
-         "previousUserMode": {
-             "mode": "JOB_SEEKER",
-             "created_at": ""
-         }
-     }
- }
- */
