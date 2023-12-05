@@ -7,23 +7,61 @@
 
 import UIKit
 
-class VerifyOTPViewController: UIViewController {
-
+class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
+    
+    @IBOutlet weak var otpInfoLabel: UILabel!
+    @IBOutlet weak var verifyButton: UIButton!
+    @IBOutlet weak var otptTmeInfoLabel: UILabel!
+    @IBOutlet weak var resendButton:UIButton!
+    
+    @IBOutlet weak var otpFirstDigitTF: UITextField!
+    @IBOutlet weak var otpSecondDigitTF: UITextField!
+    @IBOutlet weak var otpThirdDigitTF: UITextField!
+    @IBOutlet weak var otpFourthDigitTF: UITextField!
+    
+    var verifyViewModel : VerifyNumberViewModel?
+    private var deviceId : String?
+    private var textFiledOtp: String?
+    var receivedResponseOtp : Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupUI()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func verifyButtonAction(_ sender: Any) {
+        self.textFiledOtp = "\(self.otpFirstDigitTF.text ?? "")\(self.otpSecondDigitTF.text ?? "")\(self.otpThirdDigitTF.text ?? "")\(self.otpFourthDigitTF.text ?? "")"
+        guard let deviceId = deviceId, let textFiledOtp = textFiledOtp else {return} 
+        verifyViewModel?.verifyUser(withMobileNumber: "9340536820", deviceId: deviceId, otp: textFiledOtp)
+        print("Verify Button tapped")
     }
-    */
-
+    
+    @IBAction func recendOtpButtonAction(_ sender: Any) {
+        
+    }
+    
+    func didFinishVerify(with result: Result<verifyPhoneNumberModel, Error>) {
+        switch result {
+        case .success(let data):
+            print(data.data)
+        case .failure(let error):
+            print("OTP verification Failed :",error)
+        }
+    }
+    
+    
+    private func setupUI(){
+        deviceId = getDeviceID()
+        verifyViewModel = VerifyNumberViewModel()
+        verifyViewModel?.delegate = self
+    }
+    func getDeviceID() -> String {
+        if let identifierForVendor = UIDevice.current.identifierForVendor {
+            return identifierForVendor.uuidString
+        } else {
+            return "Unknown"
+        }
+    }
+    
 }

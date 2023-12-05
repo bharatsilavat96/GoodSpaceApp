@@ -123,7 +123,7 @@
                                                                     <constraint firstAttribute="width" constant="2" id="Mpt-VO-XTT"/>
                                                                 </constraints>
                                                             </view>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0123456789" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MYr-4C-Dph">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please enter mobile no." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MYr-4C-Dph">
                                                                 <rect key="frame" x="48" y="13" width="313" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="Z1i-us-0tp"/>
@@ -204,6 +204,8 @@
                         <outlet property="otpInfoLabel" destination="hGa-dh-Vv4" id="FXa-5w-gB0"/>
                         <outlet property="phoneNumberInfolabel" destination="Tvy-1g-E4c" id="8vI-dq-80j"/>
                         <outlet property="phoneNumberTextField" destination="MYr-4C-Dph" id="AEI-2L-LyW"/>
+                        <outlet property="phoneNumberView" destination="WGo-3l-gNl" id="xy8-2Q-d6P"/>
+                        <outlet property="seperatorView" destination="yP7-G5-zmc" id="Nr8-13-xi1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8Z-vA-WFq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -255,6 +257,9 @@
                                                                 <buttonConfiguration key="configuration" style="plain" title="Resend">
                                                                     <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="recendOtpButtonAction:" destination="hp9-R8-jZv" eventType="touchUpInside" id="dIb-SL-RW3"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -269,6 +274,9 @@
                                                         <buttonConfiguration key="configuration" style="plain" title="Verify Phone">
                                                             <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="verifyButtonAction:" destination="hp9-R8-jZv" eventType="touchUpInside" id="hza-oE-Xkq"/>
+                                                        </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Gc-Q4-XnV">
                                                         <rect key="frame" x="51.666666666666657" y="359.66666666666669" width="249.99999999999997" height="40"/>
@@ -341,6 +349,16 @@
                             <constraint firstItem="T2G-3U-25s" firstAttribute="bottom" secondItem="CUM-Zl-2yH" secondAttribute="bottom" id="xwH-mT-v4e"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="otpFirstDigitTF" destination="kK6-tu-V0E" id="GXi-6g-T4S"/>
+                        <outlet property="otpFourthDigitTF" destination="OUX-xf-zF3" id="hgK-er-tcF"/>
+                        <outlet property="otpInfoLabel" destination="zEb-TE-e44" id="pr5-1m-DED"/>
+                        <outlet property="otpSecondDigitTF" destination="xYm-ap-xpg" id="tMw-SA-bRK"/>
+                        <outlet property="otpThirdDigitTF" destination="D3c-Lp-Fl7" id="iDL-kD-MLa"/>
+                        <outlet property="otptTmeInfoLabel" destination="03f-s8-gLa" id="wMX-fw-LiL"/>
+                        <outlet property="resendButton" destination="VdL-QZ-OVr" id="aG0-tO-AVL"/>
+                        <outlet property="verifyButton" destination="j7m-dU-GxE" id="zXm-q8-vbl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ppz-fi-2x0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -420,6 +438,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Verify Phone">
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="verifyPhoneNumberAction:" destination="shx-47-6QL" eventType="touchUpInside" id="m9k-vK-6ZW"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.98039215800000001" green="0.98039215800000001" blue="0.98039215800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -450,6 +471,13 @@
                             <constraint firstItem="N6h-Og-O2c" firstAttribute="centerX" secondItem="X6j-Zl-VUL" secondAttribute="centerX" id="yCF-5C-tZ0"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="corrctPhoneNumberTopLabel" destination="8GX-lI-QMc" id="MSt-wZ-b9Q"/>
+                        <outlet property="correctPhoneNumberTF" destination="Mgx-dE-0NH" id="ye7-nt-HeC"/>
+                        <outlet property="correctPhoneNumberView" destination="N6h-Og-O2c" id="NBO-um-MQM"/>
+                        <outlet property="phoneNumberCountLabel" destination="tih-mz-cZS" id="OK4-AG-XN0"/>
+                        <outlet property="verifyCorrectPhoneNumberButton" destination="FVE-6T-Dyi" id="72W-He-bNo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BKK-Bx-icf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

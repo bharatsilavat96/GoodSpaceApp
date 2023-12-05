@@ -19,11 +19,10 @@ class LoginViewModel: ConnectionManagerDelegate {
    
     func loginUser(withMobileNumber: String, deviceId: String) {
         let loginApiEndPoint = APIEndpoint.getOTP
-        let body: [String: String] = ["number": withMobileNumber]
+        let body: [String: String] = ["number":withMobileNumber,"countryCode":"91"]
         connectionManager.startSession(endpoint: loginApiEndPoint, method: .post, parameters: body, deviceId: deviceId)
     }
 
-    // Implement ConnectionManagerDelegate method
     func didCompleteTask(for endpoint: APIEndpoint, with result: Result<Data, Error>, deviceId: String) {
         switch result {
         case .success(let data):

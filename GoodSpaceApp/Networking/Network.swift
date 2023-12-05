@@ -40,24 +40,23 @@ class ConnectionManager {
         if method == .post {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("Your_Auth_Token", forHTTPHeaderField: "Authorization")
-            request.setValue(deviceId, forHTTPHeaderField: "device-id")
-            request.setValue("web", forHTTPHeaderField: "device-type")
             
             if let deviceId = deviceId {
+                print("Device Id at Connection Manager : \(deviceId)")
                 request.setValue(deviceId, forHTTPHeaderField: "device-id")
+                request.setValue("web", forHTTPHeaderField: "device-type")
             }
             
-            request.setValue("Your_Device_Type", forHTTPHeaderField: "device-type")
-            
-            if let parameters = parameters {
+            if let parameters = parameters, let deviceId = deviceId {
                 do {
                     request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
                 } catch {
-                    delegate?.didCompleteTask(for: endpoint, with: .failure(error), deviceId: deviceId!)
+                    delegate?.didCompleteTask(for: endpoint, with: .failure(error), deviceId: deviceId)
                     return
                 }
             }
         }
+        
         
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {

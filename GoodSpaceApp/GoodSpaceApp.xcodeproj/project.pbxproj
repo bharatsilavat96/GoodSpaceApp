@@ -10,6 +10,8 @@
 		361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E57DB2B1E3D7000EFCE3A /* Network.swift */; };
 		363267CA2B1EC77A000376F5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267C92B1EC77A000376F5 /* LoginViewModel.swift */; };
 		363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267CB2B1EC81D000376F5 /* LoginModel.swift */; };
+		363267CF2B1EF1BB000376F5 /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267CE2B1EF1BB000376F5 /* ValidationManager.swift */; };
+		363267D12B1EF483000376F5 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267D02B1EF483000376F5 /* StringExtension.swift */; };
 		365FC4F42B1E6C8F00412FF4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4F32B1E6C8F00412FF4 /* UIViewExtension.swift */; };
 		365FC4F62B1E6C9500412FF4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4F52B1E6C9500412FF4 /* UIColorExtension.swift */; };
 		365FC4FB2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */; };
@@ -24,12 +26,16 @@
 		36E233662B1E2D22001AE0D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E233652B1E2D22001AE0D5 /* ViewController.swift */; };
 		36E233692B1E2D22001AE0D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E233672B1E2D22001AE0D5 /* Main.storyboard */; };
 		36E2336B2B1E2D23001AE0D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E2336A2B1E2D23001AE0D5 /* Assets.xcassets */; };
+		36E8822E2B1F58140094A35C /* VerifyPhoneNumberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8822D2B1F58140094A35C /* VerifyPhoneNumberModel.swift */; };
+		36E882302B1F5D4E0094A35C /* verifyNumberModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8822F2B1F5D4E0094A35C /* verifyNumberModelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		361E57DB2B1E3D7000EFCE3A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		363267C92B1EC77A000376F5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		363267CB2B1EC81D000376F5 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		363267CE2B1EF1BB000376F5 /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
+		363267D02B1EF483000376F5 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		365FC4F32B1E6C8F00412FF4 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		365FC4F52B1E6C9500412FF4 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		365FC4FA2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSplashScreenViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +52,8 @@
 		36E233682B1E2D22001AE0D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		36E2336A2B1E2D23001AE0D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36E2336F2B1E2D23001AE0D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36E8822D2B1F58140094A35C /* VerifyPhoneNumberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneNumberModel.swift; sourceTree = "<group>"; };
+		36E8822F2B1F5D4E0094A35C /* verifyNumberModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyNumberModelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,11 +75,20 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		363267CD2B1EF1A7000376F5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				363267CE2B1EF1BB000376F5 /* ValidationManager.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		365FC4F22B1E6C8000412FF4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				365FC4F32B1E6C8F00412FF4 /* UIViewExtension.swift */,
 				365FC4F52B1E6C9500412FF4 /* UIColorExtension.swift */,
+				363267D02B1EF483000376F5 /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -80,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				363267CB2B1EC81D000376F5 /* LoginModel.swift */,
+				36E8822D2B1F58140094A35C /* VerifyPhoneNumberModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				363267C92B1EC77A000376F5 /* LoginViewModel.swift */,
+				36E8822F2B1F5D4E0094A35C /* verifyNumberModelView.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -115,6 +134,7 @@
 		36E233552B1E2D22001AE0D5 = {
 			isa = PBXGroup;
 			children = (
+				363267CD2B1EF1A7000376F5 /* Helper */,
 				365FC4FC2B1E6E9F00412FF4 /* CustomFonts */,
 				361E57DA2B1E3D6000EFCE3A /* Networking */,
 				365FC4F22B1E6C8000412FF4 /* Extensions */,
@@ -220,14 +240,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E882302B1F5D4E0094A35C /* verifyNumberModelView.swift in Sources */,
 				365FC4F42B1E6C8F00412FF4 /* UIViewExtension.swift in Sources */,
 				365FC4FB2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift in Sources */,
+				363267D12B1EF483000376F5 /* StringExtension.swift in Sources */,
 				36E233662B1E2D22001AE0D5 /* ViewController.swift in Sources */,
 				36E233622B1E2D22001AE0D5 /* AppDelegate.swift in Sources */,
 				365FC5042B1E8A7900412FF4 /* SignInViewController.swift in Sources */,
 				365FC5082B1E8B0200412FF4 /* CorrectPhoneNumberPOPViewController.swift in Sources */,
+				363267CF2B1EF1BB000376F5 /* ValidationManager.swift in Sources */,
 				365FC5062B1E8AD700412FF4 /* VerifyOTPViewController.swift in Sources */,
 				361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */,
+				36E8822E2B1F58140094A35C /* VerifyPhoneNumberModel.swift in Sources */,
 				363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */,
 				363267CA2B1EC77A000376F5 /* LoginViewModel.swift in Sources */,
 				365FC50A2B1E930B00412FF4 /* DashBoardViewController.swift in Sources */,
