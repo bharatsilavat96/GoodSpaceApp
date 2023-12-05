@@ -45,7 +45,7 @@ class SignInViewController: UIViewController,LoginViewModelDelegate {
             let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPViewController") as! VerifyOTPViewController
             verifyOtpViewController.mobileNumber = "\(phoneNumber)"
             verifyOtpViewController.modalPresentationStyle = .overCurrentContext
-            self.present(verifyOtpViewController, animated: false)
+            self.navigationController?.pushViewController(verifyOtpViewController, animated: true)
         }else {
             print("Phone Number is Invalid")
         }
@@ -89,11 +89,10 @@ class SignInViewController: UIViewController,LoginViewModelDelegate {
     }
     @objc func keyboardWillShow(notification: Notification) {
         if isKeyboardOpen{
-            getOtpButton(with: (self.view.frame.maxY - 60))
             isKeyboardOpen = false
             
         } else {
-            //            print("KeyBoard is Not Open Now")
+            //print("KeyBoard is Not Open Now")
             
         }
         guard let userInfo = notification.userInfo,
@@ -114,23 +113,9 @@ class SignInViewController: UIViewController,LoginViewModelDelegate {
     }
     
     @objc func keyboardWillHide(notification: Notification) {
-        
-    }
-    func getOtpButton(with height: CGFloat) {
-        let getOtpButton = UIButton()
-        getOtpButton.frame = CGRect(x: 12, y: height, width: view.frame.width - 24, height: 50)
-        getOtpButton.setTitle("Send OTP", for: .normal)
-        //        getOtpButton.backgroundColor = UIColor(red: 0.954, green: 0.954, blue: 0.954, alpha: 1)
-        getOtpButton.backgroundColor = UIColor(red: 0.004, green: 0.325, blue: 0.271, alpha: 1)
-        getOtpButton.titleLabel?.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-        getOtpButton.layer.masksToBounds = true
-        getOtpButton.layer.cornerRadius = 5.0
-        view.addSubview(getOtpButton)
-        getOtpButton.addTarget(self, action: #selector(getOtpButtonAction), for: .touchUpInside)
-        
-    }
-    @objc func getOtpButtonAction() {
-        
+        UIView.animate(withDuration: 0.3) {
+               self.view.frame.origin.y = 0
+           }
     }
 }
 extension SignInViewController: UITextFieldDelegate{

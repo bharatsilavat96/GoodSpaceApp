@@ -94,6 +94,7 @@
 			children = (
 				363267CE2B1EF1BB000376F5 /* ValidationManager.swift */,
 				365D35E82B1F97BC00A88D60 /* CircularProgressView.swift */,
+				365D35DB2B1F887E00A88D60 /* CustomNavigationViewController.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -138,7 +139,6 @@
 				365FC5052B1E8AD700412FF4 /* VerifyOTPViewController.swift */,
 				365FC5072B1E8B0200412FF4 /* CorrectPhoneNumberPOPViewController.swift */,
 				365FC5092B1E930B00412FF4 /* DashBoardViewController.swift */,
-				365D35DB2B1F887E00A88D60 /* CustomNavigationViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
