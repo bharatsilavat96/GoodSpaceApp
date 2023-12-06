@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9xo-Fu-6Cp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eLd-QO-JbR">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -50,10 +50,11 @@
                             <constraint firstItem="4WF-Dg-2yd" firstAttribute="centerX" secondItem="J8Z-cS-9kn" secondAttribute="centerX" id="lqg-Ci-Afl"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Ffe-9c-ArD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3VA-Ii-10R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="859" y="1"/>
+            <point key="canvasLocation" x="1848" y="1"/>
         </scene>
         <!--Base View Controller-->
         <scene sceneID="O0j-ky-35H">
@@ -80,13 +81,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wVd-Qn-0u6">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrw-Hh-7En">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qyo-mE-lem">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Frame 477" translatesAutoresizingMaskIntoConstraints="NO" id="6HF-Lz-CTd">
                                                         <rect key="frame" x="16" y="52" width="361" height="361"/>
@@ -95,13 +96,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your phone number to sign in GoodSpace account." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvy-1g-E4c">
-                                                        <rect key="frame" x="16" y="446" width="361" height="40.666666666666686"/>
+                                                        <rect key="frame" x="16" y="490" width="361" height="40.666666666666629"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dY-en-6sB">
-                                                        <rect key="frame" x="16" y="639" width="361" height="56"/>
+                                                        <rect key="frame" x="16" y="683" width="361" height="56"/>
                                                         <color key="backgroundColor" red="0.21960784310000001" green="0.62352941179999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="56" id="qSR-dt-967"/>
@@ -116,13 +117,13 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will receive a 4 digit OTP " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGa-dh-Vv4">
-                                                        <rect key="frame" x="16" y="568.66666666666663" width="224" height="20.333333333333371"/>
+                                                        <rect key="frame" x="16" y="612.66666666666663" width="224" height="20.333333333333371"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGo-3l-gNl">
-                                                        <rect key="frame" x="16" y="506.66666666666663" width="361" height="56"/>
+                                                        <rect key="frame" x="16" y="550.66666666666663" width="361" height="56"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flag Pack" translatesAutoresizingMaskIntoConstraints="NO" id="hx7-zy-r2u">
                                                                 <rect key="frame" x="4" y="13" width="30" height="30"/>
@@ -1045,12 +1046,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="nfo-rU-Ads" kind="relationship" relationship="rootViewController" id="yMT-oU-InK"/>
+                        <segue destination="9xo-Fu-6Cp" kind="relationship" relationship="rootViewController" id="OjO-tj-7Sb"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwH-eb-XHE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1645" y="1"/>
+            <point key="canvasLocation" x="1042" y="1"/>
         </scene>
     </scenes>
     <resources>

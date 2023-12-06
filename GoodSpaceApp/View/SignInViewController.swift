@@ -30,6 +30,7 @@ class SignInViewController: BaseViewController,LoginViewModelDelegate {
     //MARK: - ViewDidLoad -
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
         setupUI()
         
     }
@@ -71,8 +72,7 @@ class SignInViewController: BaseViewController,LoginViewModelDelegate {
     func didFinishLogin(with result: Result<LoginModel, Error>) {
         switch result {
         case .success(let data):
-            print("Date is:")
-            
+            print("Successfully received Data at SignInVC")
         case .failure(let error):
             print("Error :\(error)")
         }

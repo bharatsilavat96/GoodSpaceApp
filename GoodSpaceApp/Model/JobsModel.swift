@@ -7,153 +7,128 @@
 
 import Foundation
 
-struct JobsModel: Codable{
-    
-    let data: [JobsData]?
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(self.data, forKey: .data)
-    }
-    enum CodingKeys: CodingKey {
-        case data
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.data = try container.decodeIfPresent([JobsData].self, forKey: .data)
-    }
-    
-}
-struct JobsData: Codable{
+struct Datum: Codable {
     let type: String?
-    let cardData: [CardData]?
-    let status: Int?
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(self.type, forKey: .type)
-        try container.encodeIfPresent(self.cardData, forKey: .cardData)
-        try container.encodeIfPresent(self.status, forKey: .status)
-    }
-    enum CodingKeys: CodingKey {
-        case type
-        case cardData
-        case status
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
-        self.cardData = try container.decodeIfPresent([CardData].self, forKey: .cardData)
-        self.status = try container.decodeIfPresent(Int.self, forKey: .status)
-    }
+    let cardData: CardData?
+    let cardType, cardVariant: String?
 }
-struct CardData: Codable{
-    let companyName: String?
-    let url: String?
-    let monthlyCompensation:String?
-    let locationCity : String?
-    let title: String?
-    let designation : String?
-    let hasApplied: Bool?
-    let jobSaved: Bool?
-    let date: String?
-    let jobType : [JobType]?
-    let displayCompensation : String?
-    let postedAtRelative: String
-    let hasLiked: Bool?
-    let userInfo: UserInfo?
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(self.companyName, forKey: .companyName)
-        try container.encodeIfPresent(self.url, forKey: .url)
-        try container.encodeIfPresent(self.monthlyCompensation, forKey: .monthlyCompensation)
-        try container.encodeIfPresent(self.locationCity, forKey: .locationCity)
-        try container.encodeIfPresent(self.title, forKey: .title)
-        try container.encodeIfPresent(self.designation, forKey: .designation)
-        try container.encodeIfPresent(self.hasApplied, forKey: .hasApplied)
-        try container.encodeIfPresent(self.jobSaved, forKey: .jobSaved)
-        try container.encodeIfPresent(self.date, forKey: .date)
-        try container.encodeIfPresent(self.jobType, forKey: .jobType)
-        try container.encodeIfPresent(self.displayCompensation, forKey: .displayCompensation)
-        try container.encode(self.postedAtRelative, forKey: .postedAtRelative)
-        try container.encodeIfPresent(self.hasLiked, forKey: .hasLiked)
-        try container.encodeIfPresent(self.userInfo, forKey: .userInfo)
-    }
-    enum CodingKeys: String,CodingKey {
-        case companyName
-        case url
-        case monthlyCompensation = "monthly_compensation"
-        case locationCity = "location_city"
-        case title
-        case designation
-        case hasApplied
-        case jobSaved
-        case date
-        case jobType
-        case displayCompensation
-        case postedAtRelative
-        case hasLiked
-        case userInfo
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.companyName = try container.decodeIfPresent(String.self, forKey: .companyName)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
-        self.monthlyCompensation = try container.decodeIfPresent(String.self, forKey: .monthlyCompensation)
-        self.locationCity = try container.decodeIfPresent(String.self, forKey: .locationCity)
-        self.title = try container.decodeIfPresent(String.self, forKey: .title)
-        self.designation = try container.decodeIfPresent(String.self, forKey: .designation)
-        self.hasApplied = try container.decodeIfPresent(Bool.self, forKey: .hasApplied)
-        self.jobSaved = try container.decodeIfPresent(Bool.self, forKey: .jobSaved)
-        self.date = try container.decodeIfPresent(String.self, forKey: .date)
-        self.jobType = try container.decodeIfPresent([JobType].self, forKey: .jobType)
-        self.displayCompensation = try container.decodeIfPresent(String.self, forKey: .displayCompensation)
-        self.postedAtRelative = try container.decode(String.self, forKey: .postedAtRelative)
-        self.hasLiked = try container.decodeIfPresent(Bool.self, forKey: .hasLiked)
-        self.userInfo = try container.decodeIfPresent(UserInfo.self, forKey: .userInfo)
-    }
-}
-struct JobType: Codable {
-    let JobType: String?
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(self.JobType, forKey: .JobType)
-    }
-    
-    enum CodingKeys: String,CodingKey {
-        case JobType = "job_type"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.JobType = try container.decodeIfPresent(String.self, forKey: .JobType)
-    }
-}
-struct UserInfo: Codable {
-    let name: String?
-    let imageID:String?
-    let isProfileVerified: Bool?
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encodeIfPresent(self.imageID, forKey: .imageID)
-        try container.encodeIfPresent(self.isProfileVerified, forKey: .isProfileVerified)
-    }
-    
+
+// MARK: - CardData
+struct CardData: Codable {
+    let showOrganisation, offerID, userID: Int
+    let companyName: String
+    let offerTypeID: Int
+    let description: String
+    let url: String
+    let lowerworkex, upperworkex: Int
+    let monthlyCompensation, hourlyCompensation: String?
+    let monthlyCompensationID, hourlyCompensationID: Int?
+    let isRemote: Int
+    let redirectURL, minScore, minAge, maxAge: JSONNull?
+    let locationCity: String?
+    let distance: Double?
+    let isOrganic: Int
+    let title: String
+    let industryTypeID, industryType: JSONNull?
+    let jobFunctionID, designationID: Int
+    let designation, date: String
+    let hasApplied, needToRedirect, jobSaved, isBusinessOpportunity: Bool
+    let showRelocateModal: Bool
+    let skills: [Skill]
+    let jobType: [JobType]
+    let displayCompensation, relativeTime, postedAtRelative: String
+    let hasLiked: Bool
+    let userInfo: UserInfo
+
     enum CodingKeys: String, CodingKey {
-        case name
-        case imageID = "image_id"
-        case isProfileVerified
+        case showOrganisation
+        case offerID
+        case userID
+        case companyName
+        case offerTypeID
+        case description, url, lowerworkex, upperworkex
+        case monthlyCompensation
+        case hourlyCompensation
+        case monthlyCompensationID
+        case hourlyCompensationID
+        case isRemote
+        case redirectURL
+        case minScore, minAge, maxAge
+        case locationCity
+        case distance
+        case isOrganic
+        case title
+        case industryTypeID
+        case industryType
+        case jobFunctionID
+        case designationID
+        case designation, date, hasApplied, needToRedirect, jobSaved, isBusinessOpportunity, showRelocateModal, skills, jobType, displayCompensation, relativeTime, postedAtRelative, hasLiked, userInfo
     }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.imageID = try container.decodeIfPresent(String.self, forKey: .imageID)
-        self.isProfileVerified = try container.decodeIfPresent(Bool.self, forKey: .isProfileVerified)
+}
+
+// MARK: - JobType
+struct JobType: Codable {
+    let offerID, jobTypeID: Int
+    let jobType: String
+
+    enum CodingKeys: String, CodingKey {
+        case offerID
+        case jobTypeID
+        case jobType
+    }
+}
+
+// MARK: - Skill
+struct Skill: Codable {
+    let offerID, skillID: Int
+    let skill: String
+
+    enum CodingKeys: String, CodingKey {
+        case offerID
+        case skillID
+        case skill
+    }
+}
+
+// MARK: - UserInfo
+struct UserInfo: Codable {
+    let userID: Int
+    let name: String
+    let imageID: String
+    let score: Double
+    let isProfileVerified: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case userID
+        case name
+        case imageID
+        case score, isProfileVerified
+    }
+}
+
+// MARK: - Encode/decode helpers
+
+class JSONNull: Codable, Hashable {
+
+    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
+        return true
+    }
+
+    public var hashValue: Int {
+        return 0
+    }
+
+    public init() {}
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if !container.decodeNil() {
+            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encodeNil()
     }
 }

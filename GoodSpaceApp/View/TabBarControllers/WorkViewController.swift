@@ -8,32 +8,57 @@
 import UIKit
 
 class WorkViewController: UIViewController,JobsViewModelDelegate {
-   
+    
     @IBOutlet weak var futureCollectionView: UICollectionView!
     @IBOutlet weak var jobsTableView: UITableView!
     @IBOutlet weak var jobSearchBar: UISearchBar!
     
     private var jobsViewModel: JobsViewModel?
+    private var deviceId: String?
+    private var autherisationCode: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        futureCollectionView.dataSource = self
-        futureCollectionView.delegate = self
-        jobsTableView.delegate = self
-        jobsTableView.dataSource = self
-        jobsViewModel?.delegate = self
-        jobsViewModel?.getUserData()
+        
+        setupUI()
     }
-    func didFinishVerify(with result: Result<JobsModel, Error>) {
+    func didFinishVerify(with result: Result<Datum, Error>) {
         switch result {
         case .success(let data):
-            print(data.data?[0].cardData?[0].companyName)
+            print("Comapny Name :",data.cardData?.companyName)
         case .failure(let error):
             print("Error: \(error)")
         }
     }
+    private func setupUI(){
+        deviceId = getDeviceID()
+        futureCollectionView.dataSource = self
+        futureCollectionView.delegate = self
+        jobsTableView.delegate = self
+        jobsTableView.dataSource = self
+
+        // Initialize the jobsViewModel
+        jobsViewModel = JobsViewModel()
+        jobsViewModel?.delegate = self
+        autherisationCode =  UserDefaults.standard.string(forKey: "UserToken")
+        print("Device Id : ---\(deviceId)")
+        print("AutheriztionCode :\(autherisationCode)")
+        
     
-    
+        if let deviceId = deviceId, let autherisationCode = autherisationCode {
+            jobsViewModel?.getUserData(withDeviceId: deviceId, parameterBody: autherisationCode)
+        }else {
+            print("Error Getting DeviceId and Access Token")
+        }
+        
+    }
+    func getDeviceID() -> String {
+        if let identifierForVendor = UIDevice.current.identifierForVendor {
+            return identifierForVendor.uuidString
+        } else {
+            return "Unknown"
+        }
+    }
 }
 extension WorkViewController: UICollectionViewDataSource{
     

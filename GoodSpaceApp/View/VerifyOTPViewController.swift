@@ -49,34 +49,34 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
     func didFinishVerify(with result: Result<verifyPhoneNumberModel, Error>) {
         switch result {
         case .success(let data):
-            print(data.data?.token)
-            let value = data.data?.token
-            UserDefaults.standard.setValue(value, forKey: "userToken")
-            if data.message == "Your OTP has been successfully verified"{
-                DispatchQueue.main.async {
-                    let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-    //                verifyOtpViewController.mobileNumber = "\(phoneNumber)"
-                    verifyOtpViewController.modalPresentationStyle = .overCurrentContext
-                    self.present(verifyOtpViewController, animated: true)
-                }
-            }else {
-                DispatchQueue.main.async {
-                    let textFields = [self.otpFirstDigitTF, self.otpSecondDigitTF, self.otpThirdDigitTF, self.otpFourthDigitTF]
-                    textFields.forEach({$0?.layer.borderColor = UIColor.red.cgColor})
-                    textFields.forEach({$0?.textColor = UIColor.red})
-                    textFields.forEach({$0?.backgroundColor = UIColor(hex: "#FAFAFA")})
-                    self.resendButton.isHidden = true
-                    self.resendButtonLabel.textColor = UIColor.red
-                    self.resendButtonLabel.text = "Enter Correct OTP"
-                    
+            print("Token At Verify VC :",data.data?.token)
+            if let token = data.data?.token {
+                // Save the token to UserDefaults
+                UserDefaults.standard.set(token, forKey: "UserToken")
+                
+                if data.message == "Your OTP has been successfully verified" {
+                    DispatchQueue.main.async {
+                        let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
+                        verifyOtpViewController.modalPresentationStyle = .overCurrentContext
+                        self.present(verifyOtpViewController, animated: true)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        let textFields = [self.otpFirstDigitTF, self.otpSecondDigitTF, self.otpThirdDigitTF, self.otpFourthDigitTF]
+                        textFields.forEach({$0?.layer.borderColor = UIColor.red.cgColor})
+                        textFields.forEach({$0?.textColor = UIColor.red})
+                        textFields.forEach({$0?.backgroundColor = UIColor(hex: "#FAFAFA")})
+                        self.resendButton.isHidden = true
+                        self.resendButtonLabel.textColor = UIColor.red
+                        self.resendButtonLabel.text = "Enter Correct OTP"
+                    }
                 }
             }
-        case .failure(let error):
-            print("OTP verification Failed :",error)
+            case .failure(let error):
+                print("OTP verification Failed :",error)
+            }
         }
-    }
-    
-    
+
     private func setupUI(){
         deviceId = getDeviceID()
         verifyViewModel = VerifyNumberViewModel()
@@ -87,7 +87,7 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
         otptTmeInfoLabel.textColor = UIColor(hex: "#C4C4C4")
         otpInfoLabel.attributedText = "OTP sent to +91 \(mobileNumber ?? "")\nEnter OTP to confirm your phone".colored(with: UIColor(hex: "#389FFF"), for: "\(mobileNumber ?? "")")
         otptTmeInfoLabel.textColor = UIColor(hex: "#C4C4C4")
-//        otpInfoLabel.font.withSize(20)
+        //        otpInfoLabel.font.withSize(20)
         let delegate = [otpFirstDigitTF, otpSecondDigitTF, otpThirdDigitTF, otpFourthDigitTF]
         delegate.forEach { $0!.delegate = self }
         let layersProperties = [otpFirstDigitTF, otpSecondDigitTF, otpThirdDigitTF, otpFourthDigitTF]
@@ -120,7 +120,7 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
         
         if otpTextFieldY < visibleHeight {
             let yOffset = 0 - keyboardSize.height
-                        print("Y Offset :",yOffset)
+            print("Y Offset :",yOffset)
             UIView.animate(withDuration: 0.3) {
                 self.view.frame.origin.y = yOffset
             }
@@ -144,8 +144,8 @@ extension VerifyOTPViewController: UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-//        let borderColor = [otpFirstDigitTF.layer, otpSecondDigitTF.layer, otpThirdDigitTF.layer, otpFourthDigitTF.layer]
-////        borderColor.forEach { $0.borderColor = UIColor.gray.cgColor }
+        //        let borderColor = [otpFirstDigitTF.layer, otpSecondDigitTF.layer, otpThirdDigitTF.layer, otpFourthDigitTF.layer]
+        ////        borderColor.forEach { $0.borderColor = UIColor.gray.cgColor }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

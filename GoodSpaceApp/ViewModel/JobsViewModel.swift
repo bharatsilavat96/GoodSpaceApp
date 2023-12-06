@@ -12,19 +12,15 @@ class JobsViewModel: ConnectionManagerDelegate{
     private let connectionManager: ConnectionManager
     weak var delegate: JobsViewModelDelegate?
     
-    init(connectionManager: ConnectionManager, delegate: JobsViewModelDelegate? = nil) {
-        self.connectionManager = connectionManager
-        self.delegate = delegate
+    init(){
+        self.connectionManager = ConnectionManager()
+        self.connectionManager.delegate = self
     }
     
-    func getUserData(){
-        let token = UserDefaults.value(forKey: "userToken")
-        print("\(token)")
-        if let token = token {
-            connectionManager.startSession(endpoint: .activePremiumProducts, method: .get,parameters: ["token": token])
-        }else {
-            print("Fetching Token Failed")
-        }
+    func getUserData(withDeviceId: String, parameterBody:String){
+        
+            connectionManager.startSession(endpoint: .activePremiumProducts, method: .get,parameters: ["Authorization": parameterBody],deviceId: withDeviceId)
+
     }
     
     func didCompleteTask(for endpoint: APIEndpoint, with result: Result<Data, Error>, deviceId: String) {
@@ -32,7 +28,7 @@ class JobsViewModel: ConnectionManagerDelegate{
         case .success(let data):
             do {
                 let decoder = JSONDecoder()
-                let jobsResponse = try decoder.decode(JobsModel.self, from: data)
+                let jobsResponse = try decoder.decode(Datum.self, from: data)
                 delegate?.didFinishVerify(with: .success(jobsResponse))
             } catch let decodingError {
                 print("Error decoding JSON: \(decodingError)")
@@ -42,12 +38,7 @@ class JobsViewModel: ConnectionManagerDelegate{
             print("Error: \(error)")
         }
     }
-    
-    
-    
-    
-    
 }
 protocol JobsViewModelDelegate: AnyObject {
-    func didFinishVerify(with result: Result<JobsModel, Error>)
+    func didFinishVerify(with result: Result<Datum, Error>)
 }
