@@ -11,11 +11,15 @@ class WorkViewController: UIViewController {
     
     
     @IBOutlet weak var futureCollectionView: UICollectionView!
+    @IBOutlet weak var jobsTableView: UITableView!
+    @IBOutlet weak var jobSearchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         futureCollectionView.dataSource = self
         futureCollectionView.delegate = self
+        jobsTableView.delegate = self
+        jobsTableView.dataSource = self
     }
     
 }
@@ -42,5 +46,25 @@ extension WorkViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 160, height: 160
         )
+    }
+}
+extension WorkViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JobsTableViewCell", for: indexPath) as! JobsTableViewCell
+        cell.contentView.roundCorners(10, borderWidth: 1, borderColor: UIColor(hex: "#C4C4C466",alpha: 0.4))
+        return cell
+    }
+    
+    
+    
+}
+extension WorkViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
     }
 }

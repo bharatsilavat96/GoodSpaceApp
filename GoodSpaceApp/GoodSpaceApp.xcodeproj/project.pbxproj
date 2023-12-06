@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3610971D2B20568B004DBFD6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3610971C2B20568B004DBFD6 /* BaseViewController.swift */; };
 		3610971F2B207650004DBFD6 /* FutureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3610971E2B207650004DBFD6 /* FutureCollectionViewCell.swift */; };
+		361097232B209350004DBFD6 /* JobsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361097222B209350004DBFD6 /* JobsTableViewCell.swift */; };
 		361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E57DB2B1E3D7000EFCE3A /* Network.swift */; };
 		363267CA2B1EC77A000376F5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267C92B1EC77A000376F5 /* LoginViewModel.swift */; };
 		363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267CB2B1EC81D000376F5 /* LoginModel.swift */; };
@@ -42,6 +43,24 @@
 /* Begin PBXFileReference section */
 		3610971C2B20568B004DBFD6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3610971E2B207650004DBFD6 /* FutureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureCollectionViewCell.swift; sourceTree = "<group>"; };
+		361097222B209350004DBFD6 /* JobsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsTableViewCell.swift; sourceTree = "<group>"; };
+		361097252B209976004DBFD6 /* Inter-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.otf"; sourceTree = "<group>"; };
+		361097262B209976004DBFD6 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
+		361097272B209976004DBFD6 /* Inter-SemiBoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBoldItalic.otf"; sourceTree = "<group>"; };
+		361097282B209976004DBFD6 /* Inter-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin.otf"; sourceTree = "<group>"; };
+		361097292B209976004DBFD6 /* Inter-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.otf"; sourceTree = "<group>"; };
+		3610972A2B209976004DBFD6 /* Inter-ExtraLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLightItalic.otf"; sourceTree = "<group>"; };
+		3610972B2B209976004DBFD6 /* Inter-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.otf"; sourceTree = "<group>"; };
+		3610972C2B209976004DBFD6 /* Inter-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.otf"; sourceTree = "<group>"; };
+		3610972D2B209976004DBFD6 /* Inter-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-BlackItalic.otf"; sourceTree = "<group>"; };
+		3610972E2B209976004DBFD6 /* Inter-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-MediumItalic.otf"; sourceTree = "<group>"; };
+		3610972F2B209976004DBFD6 /* Inter-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Italic.otf"; sourceTree = "<group>"; };
+		361097302B209976004DBFD6 /* Inter-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBold.otf"; sourceTree = "<group>"; };
+		361097312B209976004DBFD6 /* Inter-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ThinItalic.otf"; sourceTree = "<group>"; };
+		361097322B209976004DBFD6 /* Inter-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLight.otf"; sourceTree = "<group>"; };
+		361097332B209976004DBFD6 /* Inter-ExtraBoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBoldItalic.otf"; sourceTree = "<group>"; };
+		361097342B209976004DBFD6 /* Inter-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-BoldItalic.otf"; sourceTree = "<group>"; };
+		361097352B209976004DBFD6 /* Inter-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-LightItalic.otf"; sourceTree = "<group>"; };
 		361E57DB2B1E3D7000EFCE3A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		363267C92B1EC77A000376F5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		363267CB2B1EC81D000376F5 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -85,6 +104,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		361097242B209976004DBFD6 /* Inter */ = {
+			isa = PBXGroup;
+			children = (
+				361097252B209976004DBFD6 /* Inter-Bold.otf */,
+				361097262B209976004DBFD6 /* Inter-Regular.otf */,
+				361097272B209976004DBFD6 /* Inter-SemiBoldItalic.otf */,
+				361097282B209976004DBFD6 /* Inter-Thin.otf */,
+				361097292B209976004DBFD6 /* Inter-Light.otf */,
+				3610972A2B209976004DBFD6 /* Inter-ExtraLightItalic.otf */,
+				3610972B2B209976004DBFD6 /* Inter-Medium.otf */,
+				3610972C2B209976004DBFD6 /* Inter-SemiBold.otf */,
+				3610972D2B209976004DBFD6 /* Inter-BlackItalic.otf */,
+				3610972E2B209976004DBFD6 /* Inter-MediumItalic.otf */,
+				3610972F2B209976004DBFD6 /* Inter-Italic.otf */,
+				361097302B209976004DBFD6 /* Inter-ExtraBold.otf */,
+				361097312B209976004DBFD6 /* Inter-ThinItalic.otf */,
+				361097322B209976004DBFD6 /* Inter-ExtraLight.otf */,
+				361097332B209976004DBFD6 /* Inter-ExtraBoldItalic.otf */,
+				361097342B209976004DBFD6 /* Inter-BoldItalic.otf */,
+				361097352B209976004DBFD6 /* Inter-LightItalic.otf */,
+			);
+			path = Inter;
+			sourceTree = "<group>";
+		};
 		361E57DA2B1E3D6000EFCE3A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +156,7 @@
 				365D35E62B1F8B5200A88D60 /* ProfileViewController.swift */,
 				3610971C2B20568B004DBFD6 /* BaseViewController.swift */,
 				3610971E2B207650004DBFD6 /* FutureCollectionViewCell.swift */,
+				361097222B209350004DBFD6 /* JobsTableViewCell.swift */,
 			);
 			path = TabBarControllers;
 			sourceTree = "<group>";
@@ -161,6 +205,7 @@
 		365FC4FC2B1E6E9F00412FF4 /* CustomFonts */ = {
 			isa = PBXGroup;
 			children = (
+				361097242B209976004DBFD6 /* Inter */,
 				365FC4FD2B1E6EAF00412FF4 /* Poppins */,
 			);
 			path = CustomFonts;
@@ -281,6 +326,7 @@
 				363267D12B1EF483000376F5 /* StringExtension.swift in Sources */,
 				36E233662B1E2D22001AE0D5 /* ViewController.swift in Sources */,
 				36E233622B1E2D22001AE0D5 /* AppDelegate.swift in Sources */,
+				361097232B209350004DBFD6 /* JobsTableViewCell.swift in Sources */,
 				365FC5042B1E8A7900412FF4 /* SignInViewController.swift in Sources */,
 				365D35E12B1F8B2B00A88D60 /* RecruitViewController.swift in Sources */,
 				365D35DC2B1F887E00A88D60 /* CustomNavigationViewController.swift in Sources */,
