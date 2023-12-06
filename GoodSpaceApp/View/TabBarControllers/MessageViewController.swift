@@ -11,19 +11,29 @@ class MessageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Back button customization
+                let backButtonImage = UIImage(named: "ep_back")?.withTintColor(.black)
+                let backButton = UIBarButtonItem(image: backButtonImage, style: .plain, target: nil, action: nil)
+                backButton.tintColor = .gray
+                UINavigationBar.appearance().backIndicatorImage = backButtonImage
+                UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonImage
+                UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -200, vertical: 0), for: .default)
 
-        // Do any additional setup after loading the view.
-    }
-    
+                // Create a custom button on the right
+                let rightButton = UIBarButtonItem(image: UIImage(named: "icon-edit-2"), style: .plain, target: self, action: #selector(rightButtonTapped))
 
-    /*
-    // MARK: - Navigation
+                // Create a custom label on the left
+                let label = UILabel()
+                label.text = "Edit phone number"
+                label.textColor = .blue
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+                // Set the buttons in the navigation bar
+                navigationItem.leftBarButtonItem = UIBarButtonItem(customView: label)
+                navigationItem.rightBarButtonItem = rightButton
+            }
+
+            @objc func rightButtonTapped() {
+                // Handle the right button tap action
+        }
 
 }

@@ -22,9 +22,18 @@ class CorrectPhoneNumberPOPViewController: UIViewController {
 
        
     }
+    
     @IBAction func verifyPhoneNumberAction(_ sender: Any) {
         
+        
+    }
+    private func setupUI(){
+        verifyCorrectPhoneNumberButton.roundCorners(10, borderWidth: 0, borderColor: .clear)
+        correctPhoneNumberView.roundCorners(10, borderWidth: 1, borderColor: UIColor(hex: "##C4C4C466"))
+        correctPhoneNumberView.backgroundColor = UIColor(hex: "#FAFAFA")
     }
     
+}
+extension CorrectPhoneNumberPOPViewController: UITextFieldDelegate {
     
 }

@@ -15,7 +15,7 @@ class ValidationManager {
     }
     
     static func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
-        let phoneRegex = #"^\d{10}$"#
+        let phoneRegex = #"^(\+91|0)?[6789]\d{9}$"#
         let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
         return phonePredicate.evaluate(with: phoneNumber)
     }

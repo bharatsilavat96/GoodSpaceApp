@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3610971D2B20568B004DBFD6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3610971C2B20568B004DBFD6 /* BaseViewController.swift */; };
 		361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E57DB2B1E3D7000EFCE3A /* Network.swift */; };
 		363267CA2B1EC77A000376F5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267C92B1EC77A000376F5 /* LoginViewModel.swift */; };
 		363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267CB2B1EC81D000376F5 /* LoginModel.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3610971C2B20568B004DBFD6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		361E57DB2B1E3D7000EFCE3A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		363267C92B1EC77A000376F5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		363267CB2B1EC81D000376F5 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				365D35E22B1F8B3800A88D60 /* SocialViewController.swift */,
 				365D35E42B1F8B4300A88D60 /* MessageViewController.swift */,
 				365D35E62B1F8B5200A88D60 /* ProfileViewController.swift */,
+				3610971C2B20568B004DBFD6 /* BaseViewController.swift */,
 			);
 			path = TabBarControllers;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				36E8822E2B1F58140094A35C /* VerifyPhoneNumberModel.swift in Sources */,
 				363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */,
 				363267CA2B1EC77A000376F5 /* LoginViewModel.swift in Sources */,
+				3610971D2B20568B004DBFD6 /* BaseViewController.swift in Sources */,
 				365D35E52B1F8B4300A88D60 /* MessageViewController.swift in Sources */,
 				365FC50A2B1E930B00412FF4 /* DashBoardViewController.swift in Sources */,
 				36E233642B1E2D22001AE0D5 /* SceneDelegate.swift in Sources */,

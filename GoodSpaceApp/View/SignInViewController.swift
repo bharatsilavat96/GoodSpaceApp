@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignInViewController: UIViewController,LoginViewModelDelegate {
+class SignInViewController: BaseViewController,LoginViewModelDelegate {
     
     //MARK: - IBOutlets -
     @IBOutlet weak var phoneNumberTextField: UITextField!
@@ -40,17 +40,24 @@ class SignInViewController: UIViewController,LoginViewModelDelegate {
         guard let phoneNumber = phoneNumberTextField.text, let deviceId = deviceId else {
             return
         }
-        if ValidationManager.isValidPhoneNumber(phoneNumber){
-            loginViewModel?.loginUser(withMobileNumber: phoneNumber, deviceId: deviceId)
+
+        // Check if the phone number is valid
+        if ValidationManager.isValidPhoneNumber(phoneNumber) {
             let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPViewController") as! VerifyOTPViewController
             verifyOtpViewController.mobileNumber = "\(phoneNumber)"
             verifyOtpViewController.modalPresentationStyle = .overCurrentContext
             self.navigationController?.pushViewController(verifyOtpViewController, animated: true)
-        }else {
+        } else {
             print("Phone Number is Invalid")
+
+            // Update UI to indicate an error
+            phoneNumberView.roundCorners(10, borderWidth: 1, borderColor: .red)
+            otpInfoLabel.text = "Enter Correct phone number"
+            seperatorView.backgroundColor = .red
+            otpInfoLabel.textColor = UIColor.red
         }
-        
     }
+
     
     //MARK: - Functions -
     func getDeviceID() -> String {
@@ -83,7 +90,7 @@ class SignInViewController: UIViewController,LoginViewModelDelegate {
         loginPageTittleLabel.textAlignment = .left
         phoneNumberInfolabel.attributedText = highLightedString2
         otpInfoLabel.attributedText = highlightedStr3
-        phoneNumberTextField.addTarget(self, action:#selector(textFieldDidChange), for: .editingChanged)
+        //        phoneNumberTextField.addTarget(self, action:#selector(textFieldDidChange), for: .editingChanged)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -92,7 +99,6 @@ class SignInViewController: UIViewController,LoginViewModelDelegate {
             isKeyboardOpen = false
             
         } else {
-            //print("KeyBoard is Not Open Now")
             
         }
         guard let userInfo = notification.userInfo,
@@ -114,80 +120,41 @@ class SignInViewController: UIViewController,LoginViewModelDelegate {
     
     @objc func keyboardWillHide(notification: Notification) {
         UIView.animate(withDuration: 0.3) {
-               self.view.frame.origin.y = 0
-           }
+            self.view.frame.origin.y = 0
+        }
     }
 }
-extension SignInViewController: UITextFieldDelegate{
+extension SignInViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("Editing")
     }
-    @objc func textFieldDidChange() {
-            guard let text = phoneNumberTextField.text else { return }
-            let newLength = text.count
-
-            if newLength <= 10 {
-                let isNumeric = CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: text))
-
-                if isNumeric {
-                    if newLength > 9 {
-                        updateColorsForExceedingLimit(true)
-                    } else {
-                        updateColorsForExceedingLimit(false)
-                    }
-                } else {
-                    // Handle the case when the entered string is not numeric
-                    print("Invalid input. Please enter numeric characters only.")
-                    updateColorsForExceedingLimit(true)
-                }
-            } else {
-                updateColorsForExceedingLimit(true)
-            }
-        }
-
-        func updateColorsForExceedingLimit(_ isExceeding: Bool) {
-            if isExceeding {
-                phoneNumberView.roundCorners(10, borderWidth: 1, borderColor: .red)
-                otpInfoLabel.text = "Enter Correct phone number"
-                seperatorView.backgroundColor = .red
-            } else {
-                phoneNumberView.roundCorners(10, borderWidth: 1, borderColor: .gray)
-                otpInfoLabel.attributedText = highlightedStr3
-                seperatorView.backgroundColor = UIColor(hex: "#C4C4C466")
-            }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let currentText = textField.text else { return true }
+        
+        // Check if the new text is numeric
+        let isNumeric = CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string))
+        
+        // Check if the total length after replacement does not exceed 10 characters
+        let newLength = currentText.count + string.count
+        let doesNotExceedLimit = newLength <= 10
+        
+        // Allow only numeric characters and ensure total length does not exceed 10 characters
+        return isNumeric && doesNotExceedLimit
+    }
+    
+    func updateColorsForExceedingLimit(_ isExceeding: Bool) {
+        if isExceeding {
+            phoneNumberView.roundCorners(10, borderWidth: 1, borderColor: .red)
+            otpInfoLabel.text = "Enter Correct phone number"
+            seperatorView.backgroundColor = .red
+            otpInfoLabel.textColor = UIColor.red
+        } else {
+            otpInfoLabel.textColor = UIColor(hex: "#C4C4C4")
+            phoneNumberView.roundCorners(10, borderWidth: 1, borderColor: .gray)
+            seperatorView.backgroundColor = UIColor(hex: "#C4C4C466")
+            otpInfoLabel.attributedText = highlightedStr3
         }
     }
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        guard let text = textField.text else { return true }
-//        let newLength = text.count + string.count - range.length
-//
-//        if newLength <= 10 {
-//            let isNumeric = CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string))
-//
-//            if isNumeric {
-//                if newLength > 9 {
-//                    phoneNumberView.roundCorners(10, borderWidth: 1, borderColor: .red)
-//                    otpInfoLabel.text = "Enter Correct phone number"
-//                    seperatorView.backgroundColor = .red
-//                } else {
-//                    phoneNumberView.roundCorners(10, borderWidth: 1, borderColor: .gray)
-//                    otpInfoLabel.attributedText = highlightedStr3
-//                    seperatorView.backgroundColor = UIColor(hex: "#C4C4C466")
-//                }
-//            } else {
-//                // Handle the case when the entered string is not numeric
-//                print("Invalid input. Please enter numeric characters only.")
-//            }
-//
-//            return true
-//        } else {
-//            // Perform the color update logic here for exceeding 10 characters
-//            phoneNumberView.roundCorners(10, borderWidth: 1, borderColor: .red)
-//            otpInfoLabel.text = "Enter Correct phone number"
-//            seperatorView.backgroundColor = .red
-//            return false
-//        }
-//    }
-
-//}
+}

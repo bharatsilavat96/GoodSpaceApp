@@ -17,13 +17,17 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
     @IBOutlet weak var otpFirstDigitTF: UITextField!
     @IBOutlet weak var otpSecondDigitTF: UITextField!
     @IBOutlet weak var otpThirdDigitTF: UITextField!
+    @IBOutlet weak var resendButtonLabel: UILabel!
     @IBOutlet weak var otpFourthDigitTF: UITextField!
+    @IBOutlet weak var otpStackTextView: UIStackView!
+    
     
     var verifyViewModel : VerifyNumberViewModel?
     private var deviceId : String?
     private var textFiledOtp: String?
     var receivedResponseOtp : Int?
     var mobileNumber: String?
+    var isKeyboardOpen: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,14 +50,26 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
         switch result {
         case .success(let data):
             print(data.data)
-            
-        case .failure(let error):
-            DispatchQueue.main.async {
-                self.otpFirstDigitTF.roundCorners(5, borderWidth: 1, borderColor: UIColor.red)
-                self.otpSecondDigitTF.roundCorners(5, borderWidth: 1, borderColor: UIColor.red)
-                self.otpThirdDigitTF.roundCorners(5, borderWidth: 1, borderColor: UIColor.red)
-                self.otpFourthDigitTF.roundCorners(5, borderWidth: 1, borderColor: UIColor.red)
+            if data.message == "Your OTP has been successfully verified"{
+                DispatchQueue.main.async {
+                    let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
+    //                verifyOtpViewController.mobileNumber = "\(phoneNumber)"
+                    verifyOtpViewController.modalPresentationStyle = .overCurrentContext
+                    self.present(verifyOtpViewController, animated: true)
+                }
+            }else {
+                DispatchQueue.main.async {
+                    let textFields = [self.otpFirstDigitTF, self.otpSecondDigitTF, self.otpThirdDigitTF, self.otpFourthDigitTF]
+                    textFields.forEach({$0?.layer.borderColor = UIColor.red.cgColor})
+                    textFields.forEach({$0?.textColor = UIColor.red})
+                    textFields.forEach({$0?.backgroundColor = UIColor(hex: "#FAFAFA")})
+                    self.resendButton.isHidden = true
+                    self.resendButtonLabel.textColor = UIColor.red
+                    self.resendButtonLabel.text = "Enter Correct OTP"
+                    
+                }
             }
+        case .failure(let error):
             print("OTP verification Failed :",error)
         }
     }
@@ -75,6 +91,8 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
         let layersProperties = [otpFirstDigitTF, otpSecondDigitTF, otpThirdDigitTF, otpFourthDigitTF]
         layersProperties.forEach { $0?.roundCorners(5, borderWidth: 1, borderColor: UIColor(hex: "#389FFF")) }
         verifyButton.roundCorners(10, borderWidth: 0, borderColor: UIColor(hex: "#389FFF"))
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     func getDeviceID() -> String {
         if let identifierForVendor = UIDevice.current.identifierForVendor {
@@ -83,7 +101,35 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
             return "Unknown"
         }
     }
+    @objc func keyboardWillShow(notification: Notification) {
+        if isKeyboardOpen{
+            isKeyboardOpen = false
+            
+        } else {
+            
+        }
+        guard let userInfo = notification.userInfo,
+              let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else { return }
+        
+        let otpTextFieldY = self.otpFirstDigitTF.frame.origin.x + self.otpFirstDigitTF.frame.origin.y + self.otpFirstDigitTF.frame.size.height
+        print("mobileNumberTextFieldY :",otpTextFieldY)
+        let visibleHeight = self.view.frame.size.height - keyboardSize.height
+        //        print("Visible Height :",visibleHeight)
+        
+        if otpTextFieldY < visibleHeight {
+            let yOffset = 0 - keyboardSize.height
+                        print("Y Offset :",yOffset)
+            UIView.animate(withDuration: 0.3) {
+                self.view.frame.origin.y = yOffset
+            }
+        }
+    }
     
+    @objc func keyboardWillHide(notification: Notification) {
+        UIView.animate(withDuration: 0.3) {
+            self.view.frame.origin.y = 0
+        }
+    }
 }
 extension VerifyOTPViewController: UITextFieldDelegate{
     
