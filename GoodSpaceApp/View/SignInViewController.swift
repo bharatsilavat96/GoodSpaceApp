@@ -99,7 +99,6 @@ class SignInViewController: BaseViewController,LoginViewModelDelegate {
             isKeyboardOpen = false
             
         } else {
-            
         }
         guard let userInfo = notification.userInfo,
               let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else { return }

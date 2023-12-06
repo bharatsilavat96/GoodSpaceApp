@@ -32,7 +32,7 @@ class CircularProgressBar: UIView {
 
         progressLayer = CAShapeLayer()
         progressLayer.path = circularPath.cgPath
-        progressLayer.strokeColor = UIColor.green.cgColor
+        progressLayer.strokeColor = UIColor(hex: "#1E9915").cgColor
         progressLayer.lineWidth = 2.0
         progressLayer.fillColor = UIColor.clear.cgColor
         progressLayer.strokeEnd = 0.0

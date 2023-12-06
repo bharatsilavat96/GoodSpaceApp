@@ -15,6 +15,7 @@ class DashBoardViewController: UITabBarController {
         let tabBar = self.tabBar
         tabBar.barTintColor = .white
         tabBar.tintColor = UIColor(hex: "#389FFF")
+        setupTopView()
         setupTabBar()
         tabBar.backgroundColor = UIColor.white
     }
@@ -23,7 +24,7 @@ class DashBoardViewController: UITabBarController {
         topView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(topView)
         
-        let circularProgressBar = CircularProgressBar(frame: CGRect(x: 0, y: 0, width: 34, height: 34))
+        let circularProgressBar = CircularProgressBar(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
         circularProgressBar.translatesAutoresizingMaskIntoConstraints = false
         circularProgressBar.setProgress(0.30)
         topView.addSubview(circularProgressBar)
@@ -31,24 +32,27 @@ class DashBoardViewController: UITabBarController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 17 // Adjust the radius to half of the circularProgressBar's width
+        imageView.layer.cornerRadius = 17
         imageView.layer.masksToBounds = true
-        imageView.image = UIImage(named: "Ellipse") // Replace with your image name
+        imageView.image = UIImage(named: "Ellipse")
         topView.addSubview(imageView)
         
         let button1 = UIButton()
         button1.translatesAutoresizingMaskIntoConstraints = false
         button1.setImage(UIImage(named: "basil_diamond-outline"), for: .normal)
+        button1.addTarget(self, action: #selector(diamongButtonAction), for: .touchUpInside)
         topView.addSubview(button1)
         
         let button2 = UIButton()
         button2.translatesAutoresizingMaskIntoConstraints = false
         button2.setImage(UIImage(named: "icon-bell"), for: .normal)
+        button2.addTarget(self, action: #selector(notificationButtonAction), for: .touchUpInside)
         topView.addSubview(button2)
         
         let button3 = UIButton()
         button3.translatesAutoresizingMaskIntoConstraints = false
         button3.setImage(UIImage(named: "icon-align-left"), for: .normal)
+        button3.addTarget(self, action: #selector(showMoreButtonAction), for: .touchUpInside)
         topView.addSubview(button3)
         
         NSLayoutConstraint.activate([
@@ -59,8 +63,8 @@ class DashBoardViewController: UITabBarController {
 
             circularProgressBar.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 8),
             circularProgressBar.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
-            circularProgressBar.widthAnchor.constraint(equalToConstant: 34),
-            circularProgressBar.heightAnchor.constraint(equalToConstant: 34),
+            circularProgressBar.widthAnchor.constraint(equalToConstant: 38),
+            circularProgressBar.heightAnchor.constraint(equalToConstant: 38),
 
             imageView.centerXAnchor.constraint(equalTo: circularProgressBar.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: circularProgressBar.centerYAnchor),
@@ -104,5 +108,13 @@ class DashBoardViewController: UITabBarController {
         viewControllers = controllers.map({ UINavigationController(rootViewController: $0)})
         
     }
-    
+    @objc func diamongButtonAction(){
+        print("Diamond button tapped")
+    }
+    @objc func notificationButtonAction(){
+        print("notification button tapped")
+    }
+    @objc func showMoreButtonAction(){
+        print("showMore button tapped")
+    }
 }
