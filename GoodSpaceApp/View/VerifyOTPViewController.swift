@@ -49,7 +49,9 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
     func didFinishVerify(with result: Result<verifyPhoneNumberModel, Error>) {
         switch result {
         case .success(let data):
-            print(data.data)
+            print(data.data?.token)
+            let value = data.data?.token
+            UserDefaults.standard.setValue(value, forKey: "userToken")
             if data.message == "Your OTP has been successfully verified"{
                 DispatchQueue.main.async {
                     let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController

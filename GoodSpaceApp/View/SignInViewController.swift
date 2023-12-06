@@ -41,11 +41,11 @@ class SignInViewController: BaseViewController,LoginViewModelDelegate {
             return
         }
 
-        // Check if the phone number is valid
         if ValidationManager.isValidPhoneNumber(phoneNumber) {
+            loginViewModel?.loginUser(withMobileNumber: phoneNumber, deviceId: deviceId)
             let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPViewController") as! VerifyOTPViewController
             verifyOtpViewController.mobileNumber = "\(phoneNumber)"
-            verifyOtpViewController.modalPresentationStyle = .overCurrentContext
+            verifyOtpViewController.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(verifyOtpViewController, animated: true)
         } else {
             print("Phone Number is Invalid")
@@ -71,7 +71,8 @@ class SignInViewController: BaseViewController,LoginViewModelDelegate {
     func didFinishLogin(with result: Result<LoginModel, Error>) {
         switch result {
         case .success(let data):
-            print("Date is ;",data.message)
+            print("Date is:")
+            
         case .failure(let error):
             print("Error :\(error)")
         }
@@ -90,7 +91,7 @@ class SignInViewController: BaseViewController,LoginViewModelDelegate {
         loginPageTittleLabel.textAlignment = .left
         phoneNumberInfolabel.attributedText = highLightedString2
         otpInfoLabel.attributedText = highlightedStr3
-        //        phoneNumberTextField.addTarget(self, action:#selector(textFieldDidChange), for: .editingChanged)
+//        phoneNumberTextField.addTarget(self, action:#selector(textFieldDidChange), for: .editingChanged)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }

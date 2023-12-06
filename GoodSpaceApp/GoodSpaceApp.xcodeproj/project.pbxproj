@@ -10,6 +10,8 @@
 		3610971D2B20568B004DBFD6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3610971C2B20568B004DBFD6 /* BaseViewController.swift */; };
 		3610971F2B207650004DBFD6 /* FutureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3610971E2B207650004DBFD6 /* FutureCollectionViewCell.swift */; };
 		361097232B209350004DBFD6 /* JobsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361097222B209350004DBFD6 /* JobsTableViewCell.swift */; };
+		36131FF62B20D018004CDA22 /* JobsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36131FF52B20D018004CDA22 /* JobsModel.swift */; };
+		36131FF82B20D563004CDA22 /* JobsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36131FF72B20D563004CDA22 /* JobsViewModel.swift */; };
 		361E57DC2B1E3D7000EFCE3A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E57DB2B1E3D7000EFCE3A /* Network.swift */; };
 		363267CA2B1EC77A000376F5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267C92B1EC77A000376F5 /* LoginViewModel.swift */; };
 		363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363267CB2B1EC81D000376F5 /* LoginModel.swift */; };
@@ -61,6 +63,8 @@
 		361097332B209976004DBFD6 /* Inter-ExtraBoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBoldItalic.otf"; sourceTree = "<group>"; };
 		361097342B209976004DBFD6 /* Inter-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-BoldItalic.otf"; sourceTree = "<group>"; };
 		361097352B209976004DBFD6 /* Inter-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-LightItalic.otf"; sourceTree = "<group>"; };
+		36131FF52B20D018004CDA22 /* JobsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsModel.swift; sourceTree = "<group>"; };
+		36131FF72B20D563004CDA22 /* JobsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsViewModel.swift; sourceTree = "<group>"; };
 		361E57DB2B1E3D7000EFCE3A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		363267C92B1EC77A000376F5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		363267CB2B1EC81D000376F5 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 			children = (
 				363267CB2B1EC81D000376F5 /* LoginModel.swift */,
 				36E8822D2B1F58140094A35C /* VerifyPhoneNumberModel.swift */,
+				36131FF52B20D018004CDA22 /* JobsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 			children = (
 				363267C92B1EC77A000376F5 /* LoginViewModel.swift */,
 				36E8822F2B1F5D4E0094A35C /* verifyNumberModelView.swift */,
+				36131FF72B20D563004CDA22 /* JobsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E882302B1F5D4E0094A35C /* verifyNumberModelView.swift in Sources */,
+				36131FF62B20D018004CDA22 /* JobsModel.swift in Sources */,
 				365FC4F42B1E6C8F00412FF4 /* UIViewExtension.swift in Sources */,
 				365FC4FB2B1E6DA500412FF4 /* SecondSplashScreenViewController.swift in Sources */,
 				363267D12B1EF483000376F5 /* StringExtension.swift in Sources */,
@@ -341,6 +348,7 @@
 				36E8822E2B1F58140094A35C /* VerifyPhoneNumberModel.swift in Sources */,
 				363267CC2B1EC81D000376F5 /* LoginModel.swift in Sources */,
 				3610971F2B207650004DBFD6 /* FutureCollectionViewCell.swift in Sources */,
+				36131FF82B20D563004CDA22 /* JobsViewModel.swift in Sources */,
 				363267CA2B1EC77A000376F5 /* LoginViewModel.swift in Sources */,
 				3610971D2B20568B004DBFD6 /* BaseViewController.swift in Sources */,
 				365D35E52B1F8B4300A88D60 /* MessageViewController.swift in Sources */,
