@@ -29,15 +29,15 @@ class ConnectionManager {
         deviceId = getDeviceID()
     }
     private func getDeviceID() -> String {
-            if let identifierForVendor = UIDevice.current.identifierForVendor {
-                return identifierForVendor.uuidString
-            } else {
-                // Fallback to a default value or handle the case when identifierForVendor is nil
-                return "DefaultDeviceID"
-            }
+        if let identifierForVendor = UIDevice.current.identifierForVendor {
+            return identifierForVendor.uuidString
+        } else {
+            // Fallback to a default value or handle the case when identifierForVendor is nil
+            return "DefaultDeviceID"
         }
+    }
     
-    func startSession(endpoint: APIEndpoint, method: HTTPMethod, parameters: [String: Any]? = nil) {
+    func startSession(endpoint: APIEndpoint, method: HTTPMethod, parameters: [String: Any]? = nil, customHeaders: [String: String]? = nil) {
         guard var components = URLComponents(string: APIConfig.baseURL + endpoint.rawValue) else { return }
         
         if method == .get, let params = parameters {
@@ -49,17 +49,25 @@ class ConnectionManager {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         
+        if let customHeaders = customHeaders {
+            for (key, value) in customHeaders {
+                request.setValue(value, forHTTPHeaderField: key)
+                print("authorizationk: \(key)")
+                print("authorizationv: \(value)")
+            }
+        }
+        
         if method == .post {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("Your_Auth_Token", forHTTPHeaderField: "Authorization")
             
             if let deviceId = deviceId {
                 print("Device Id at Connection Manager : \(deviceId)")
-                request.setValue(self.deviceId, forHTTPHeaderField: "device-id")
+                request.setValue(deviceId, forHTTPHeaderField: "device-id")
                 request.setValue("web", forHTTPHeaderField: "device-type")
             }
             
-            if let parameters = parameters{
+            if let parameters = parameters {
                 do {
                     request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
                 } catch {
@@ -68,7 +76,6 @@ class ConnectionManager {
                 }
             }
         }
-        
         
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {

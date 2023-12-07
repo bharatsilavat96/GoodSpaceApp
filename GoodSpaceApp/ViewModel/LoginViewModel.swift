@@ -17,7 +17,7 @@ class LoginViewModel: ConnectionManagerDelegate {
         self.connectionManager.delegate = self
     }
    
-    func loginUser(withMobileNumber: String, deviceId: String) {
+    func loginUser(withMobileNumber: String) {
         let loginApiEndPoint = APIEndpoint.getOTP
         let body: [String: String] = ["number":withMobileNumber,"countryCode":"91"]
         connectionManager.startSession(endpoint: loginApiEndPoint, method: .post, parameters: body)

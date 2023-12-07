@@ -14,51 +14,43 @@ class WorkViewController: UIViewController,JobsViewModelDelegate {
     @IBOutlet weak var jobSearchBar: UISearchBar!
     
     private var jobsViewModel: JobsViewModel?
-    private var deviceId: String?
-    private var autherisationCode: String?
+    private var Authorization: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
     }
-    func didFinishVerify(with result: Result<JobModel, Error>) {
-        switch result {
-        case .success(let data):
-            print("Comapny Name :",data.cardData?.companyName)
-        case .failure(let error):
-            print("Error: \(error)")
-        }
-    }
+    
     private func setupUI(){
-        deviceId = getDeviceID()
+       
+        // Initialize the jobsViewModel
+        jobsViewModel = JobsViewModel()
+        jobsViewModel?.delegate = self
+        
         futureCollectionView.dataSource = self
         futureCollectionView.delegate = self
         jobsTableView.delegate = self
         jobsTableView.dataSource = self
-
-        // Initialize the jobsViewModel
-        jobsViewModel = JobsViewModel()
-        jobsViewModel?.delegate = self
-        autherisationCode =  UserDefaults.standard.string(forKey: "UserToken")
-        print("Device Id : ---\(deviceId)")
-        print("AutheriztionCode :\(autherisationCode)")
-        
+    }
     
-        if let deviceId = deviceId, let autherisationCode = autherisationCode {
-            jobsViewModel?.getUserData(withDeviceId: deviceId, parameterBody: autherisationCode)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        handleApiafterSecond()
+    }
+    func handleApiafterSecond(){
+        Authorization  = UserDefaultsManager.shared.getAuthToken()
+        if let Authorization = Authorization {
+            let customHeader = [ "Authorization" : Authorization]
+            jobsViewModel?.getUserData(withHeader: customHeader)
         }else {
-            print("Error Getting DeviceId and Access Token")
-        }
-        
-    }
-    func getDeviceID() -> String {
-        if let identifierForVendor = UIDevice.current.identifierForVendor {
-            return identifierForVendor.uuidString
-        } else {
-            return "Unknown"
+            print("Error Getting Access Token")
         }
     }
+    
+    func didFinishVerify(with result: [String : Any]) {
+        print(result.values)
+    }
+    
 }
 extension WorkViewController: UICollectionViewDataSource{
     
@@ -98,7 +90,6 @@ extension WorkViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JobsTableViewCell", for: indexPath) as! JobsTableViewCell
         cell.contentView.roundCorners(10, borderWidth: 1, borderColor: UIColor(hex: "#C4C4C466",alpha: 0.4))
-        cell.separatorInset.bottom
         return cell
     }
 }

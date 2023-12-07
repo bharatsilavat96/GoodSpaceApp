@@ -20,7 +20,7 @@ class SignInViewController: BaseViewController,LoginViewModelDelegate {
     @IBOutlet weak var seperatorView: UIView!
     
     //MARK: - Variables -
-    private var deviceId : String?
+    
     private var loginViewModel: LoginViewModel?
     let highLightedString = "Discover\nDREAM dive in".colored(with: UIColor(hex: "#389FFF"), for: "DREAM")
     let highLightedString2 = "Please enter your phone number to sign in GoodSpace account.".colored(with: UIColor(hex: "#389FFF"), for: "GoodSpace")
@@ -38,12 +38,13 @@ class SignInViewController: BaseViewController,LoginViewModelDelegate {
     //MARK: - IBActions -
     @IBAction func getOTPButtonAction(_ sender: Any) {
         print("Get Otp Button Tapped")
-        guard let phoneNumber = phoneNumberTextField.text, let deviceId = deviceId else {
+        
+        guard let phoneNumber = phoneNumberTextField.text else {
             return
         }
 
         if ValidationManager.isValidPhoneNumber(phoneNumber) {
-            loginViewModel?.loginUser(withMobileNumber: phoneNumber, deviceId: deviceId)
+            loginViewModel?.loginUser(withMobileNumber: phoneNumber)
             let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "VerifyOTPViewController") as! VerifyOTPViewController
             verifyOtpViewController.mobileNumber = "\(phoneNumber)"
             verifyOtpViewController.modalPresentationStyle = .fullScreen
@@ -61,25 +62,16 @@ class SignInViewController: BaseViewController,LoginViewModelDelegate {
 
     
     //MARK: - Functions -
-    func getDeviceID() -> String {
-        if let identifierForVendor = UIDevice.current.identifierForVendor {
-            return identifierForVendor.uuidString
-        } else {
-            return "Unknown"
-        }
-    }
-    
     func didFinishLogin(with result: Result<LoginModel, Error>) {
         switch result {
         case .success(let data):
-            print("Successfully received Data at SignInVC")
+            print("Successfully Sign In with data :\(data)/")
         case .failure(let error):
             print("Error :\(error)")
         }
     }
     
     private func setupUI(){
-        deviceId = getDeviceID()
         loginViewModel = LoginViewModel()
         loginViewModel?.delegate = self
         phoneNumberTextField.delegate = self

@@ -11,15 +11,16 @@ class JobsViewModel: ConnectionManagerDelegate{
     
     private let connectionManager: ConnectionManager
     weak var delegate: JobsViewModelDelegate?
+    var decodedData: [String: Any]?
     
     init(){
         self.connectionManager = ConnectionManager()
         self.connectionManager.delegate = self
     }
     
-    func getUserData(withDeviceId: String, parameterBody:String){
-        
-            connectionManager.startSession(endpoint: .activePremiumProducts, method: .get,parameters: ["Authorization": parameterBody])
+    func getUserData(withHeader: [String:String]){
+
+        connectionManager.startSession(endpoint: .jobsList, method: .get,customHeaders: withHeader)
 
     }
     
@@ -27,12 +28,12 @@ class JobsViewModel: ConnectionManagerDelegate{
         switch result{
         case .success(let data):
             do {
-                let decoder = JSONDecoder()
-                let jobsResponse = try decoder.decode(JobModel.self, from: data)
-                delegate?.didFinishVerify(with: .success(jobsResponse))
-            } catch let decodingError {
-                print("Error decoding JSON: \(decodingError)")
-                delegate?.didFinishVerify(with: .failure(decodingError))
+                if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    decodedData = jsonObject
+                    delegate?.didFinishVerify(with: decodedData!)
+                }
+            } catch{
+                print("decodingError")
             }
         case .failure(let error):
             print("Error: \(error)")
@@ -40,5 +41,5 @@ class JobsViewModel: ConnectionManagerDelegate{
     }
 }
 protocol JobsViewModelDelegate: AnyObject {
-    func didFinishVerify(with result: Result<JobModel, Error>)
+    func didFinishVerify(with result: [String:Any])
 }

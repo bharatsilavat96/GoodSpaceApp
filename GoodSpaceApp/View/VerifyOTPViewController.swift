@@ -23,11 +23,11 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
     
     
     var verifyViewModel : VerifyNumberViewModel?
-    private var deviceId : String?
     private var textFiledOtp: String?
     var receivedResponseOtp : Int?
     var mobileNumber: String?
     var isKeyboardOpen: Bool = true
+    var otpText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,29 +36,29 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
     }
     
     @IBAction func verifyButtonAction(_ sender: Any) {
-        self.textFiledOtp = "\(self.otpFirstDigitTF.text ?? "")\(self.otpSecondDigitTF.text ?? "")\(self.otpThirdDigitTF.text ?? "")\(self.otpFourthDigitTF.text ?? "")"
-        guard let deviceId = deviceId, let textFiledOtp = textFiledOtp else {return}
-        verifyViewModel?.verifyUser(withMobileNumber: "9340536820", deviceId: deviceId, otp: textFiledOtp)
-        print("Verify Button tapped")
+        self.otpText = "\(self.otpFirstDigitTF.text ?? "")\(self.otpSecondDigitTF.text ?? "")\(self.otpThirdDigitTF.text ?? "")\(self.otpFourthDigitTF.text ?? "")"
+          guard let otpText = otpText, let mobileNumber = mobileNumber else { return }
+          verifyViewModel?.verifyUser(withMobileNumber: mobileNumber, otp: otpText)
+          let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
+          verifyOtpViewController.modalPresentationStyle = .fullScreen
+          self.navigationController?.pushViewController(verifyOtpViewController, animated: true)
     }
     
     @IBAction func recendOtpButtonAction(_ sender: Any) {
         
     }
-    
     func didFinishVerify(with result: Result<verifyPhoneNumberModel, Error>) {
         switch result {
         case .success(let data):
-            print("Token At Verify VC :",data.data?.token)
             if let token = data.data?.token {
-                // Save the token to UserDefaults
-                UserDefaults.standard.set(token, forKey: "UserToken")
+                //MARK: - Saving Token in UserDefaults -
+                UserDefaultsManager.shared.saveAuthToken(token)
                 
                 if data.message == "Your OTP has been successfully verified" {
                     DispatchQueue.main.async {
-                        let verifyOtpViewController = self.storyboard?.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-                        verifyOtpViewController.modalPresentationStyle = .overCurrentContext
-                        self.present(verifyOtpViewController, animated: true)
+                        let dsViewController = self.storyboard?.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
+                        dsViewController.modalPresentationStyle = .overCurrentContext
+                        self.present(dsViewController, animated: true)
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -72,13 +72,13 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
                     }
                 }
             }
-            case .failure(let error):
-                print("OTP verification Failed :",error)
-            }
+        case .failure(let error):
+            print("OTP verification Failed :",error)
         }
-
+    }
+    
     private func setupUI(){
-        deviceId = getDeviceID()
+        
         verifyViewModel = VerifyNumberViewModel()
         verifyViewModel?.delegate = self
         let keyBoardType = [otpFirstDigitTF, otpSecondDigitTF, otpThirdDigitTF, otpFourthDigitTF]
@@ -96,13 +96,7 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    func getDeviceID() -> String {
-        if let identifierForVendor = UIDevice.current.identifierForVendor {
-            return identifierForVendor.uuidString
-        } else {
-            return "Unknown"
-        }
-    }
+    
     @objc func keyboardWillShow(notification: Notification) {
         if isKeyboardOpen{
             isKeyboardOpen = false
@@ -114,13 +108,10 @@ class VerifyOTPViewController: UIViewController,VerifyNumberViewModelDelegate {
               let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else { return }
         
         let otpTextFieldY = self.otpFirstDigitTF.frame.origin.x + self.otpFirstDigitTF.frame.origin.y + self.otpFirstDigitTF.frame.size.height
-        print("mobileNumberTextFieldY :",otpTextFieldY)
         let visibleHeight = self.view.frame.size.height - keyboardSize.height
-        //        print("Visible Height :",visibleHeight)
         
         if otpTextFieldY < visibleHeight {
             let yOffset = 0 - keyboardSize.height
-            print("Y Offset :",yOffset)
             UIView.animate(withDuration: 0.3) {
                 self.view.frame.origin.y = yOffset
             }

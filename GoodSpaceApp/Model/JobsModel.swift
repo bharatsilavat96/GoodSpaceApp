@@ -48,26 +48,26 @@ struct CardData: Codable {
     let lowerworkex: Int?
     let upperworkex: Int?
     let monthlyCompensation: String?
-    let hourlyCompensation: String?
+//    let hourlyCompensation: Any
     let monthlyCompensationId: Int?
-    let hourlyCompensationId: Int?
+//    let hourlyCompensationId: Any
     let isRemote: Int?
-    let redirectUrl: String?
-    let minScore: String?
-    let minAge: Int?
-    let maxAge: Int?
+//    let redirectUrl: Any
+//    let minScore: Any
+//    let minAge: Any
+//    let maxAge: Any
     let locationCity: String?
     let distance: Double?
     let isOrganic: Int?
     let title: String?
-    let industryTypeId: String?
-    let industryType: String?
+//    let industryTypeId: Any
+//    let industryType: Any
     let jobFunctionId: Int?
     let designationId: Int?
     let designation: String?
     let date: String?
     let hasApplied: Bool?
-    let needToRedirect: Bool?
+//    let needToRedirect: Any
     let jobSaved: Bool?
     let isBusinessOpportunity: Bool?
     let showRelocateModal: Bool?
@@ -79,50 +79,6 @@ struct CardData: Codable {
     let hasLiked: Bool?
     let userInfo: UserInfo?
 
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(self.showOrganisation, forKey: .showOrganisation)
-        try container.encodeIfPresent(self.offerId, forKey: .offerId)
-        try container.encodeIfPresent(self.userId, forKey: .userId)
-        try container.encodeIfPresent(self.companyName, forKey: .companyName)
-        try container.encodeIfPresent(self.offerTypeId, forKey: .offerTypeId)
-        try container.encodeIfPresent(self.description, forKey: .description)
-        try container.encodeIfPresent(self.url, forKey: .url)
-        try container.encodeIfPresent(self.lowerworkex, forKey: .lowerworkex)
-        try container.encodeIfPresent(self.upperworkex, forKey: .upperworkex)
-        try container.encodeIfPresent(self.monthlyCompensation, forKey: .monthlyCompensation)
-        try container.encodeIfPresent(self.hourlyCompensation, forKey: .hourlyCompensation)
-        try container.encodeIfPresent(self.monthlyCompensationId, forKey: .monthlyCompensationId)
-        try container.encodeIfPresent(self.hourlyCompensationId, forKey: .hourlyCompensationId)
-        try container.encodeIfPresent(self.isRemote, forKey: .isRemote)
-        try container.encodeIfPresent(self.redirectUrl, forKey: .redirectUrl)
-        try container.encodeIfPresent(self.minScore, forKey: .minScore)
-        try container.encodeIfPresent(self.minAge, forKey: .minAge)
-        try container.encodeIfPresent(self.maxAge, forKey: .maxAge)
-        try container.encodeIfPresent(self.locationCity, forKey: .locationCity)
-        try container.encodeIfPresent(self.distance, forKey: .distance)
-        try container.encodeIfPresent(self.isOrganic, forKey: .isOrganic)
-        try container.encodeIfPresent(self.title, forKey: .title)
-        try container.encodeIfPresent(self.industryTypeId, forKey: .industryTypeId)
-        try container.encodeIfPresent(self.industryType, forKey: .industryType)
-        try container.encodeIfPresent(self.jobFunctionId, forKey: .jobFunctionId)
-        try container.encodeIfPresent(self.designationId, forKey: .designationId)
-        try container.encodeIfPresent(self.designation, forKey: .designation)
-        try container.encodeIfPresent(self.date, forKey: .date)
-        try container.encodeIfPresent(self.hasApplied, forKey: .hasApplied)
-        try container.encodeIfPresent(self.needToRedirect, forKey: .needToRedirect)
-        try container.encodeIfPresent(self.jobSaved, forKey: .jobSaved)
-        try container.encodeIfPresent(self.isBusinessOpportunity, forKey: .isBusinessOpportunity)
-        try container.encodeIfPresent(self.showRelocateModal, forKey: .showRelocateModal)
-        try container.encodeIfPresent(self.skills, forKey: .skills)
-        try container.encodeIfPresent(self.jobType, forKey: .jobType)
-        try container.encodeIfPresent(self.displayCompensation, forKey: .displayCompensation)
-        try container.encodeIfPresent(self.relativeTime, forKey: .relativeTime)
-        try container.encodeIfPresent(self.postedAtRelative, forKey: .postedAtRelative)
-        try container.encodeIfPresent(self.hasLiked, forKey: .hasLiked)
-        try container.encodeIfPresent(self.userInfo, forKey: .userInfo)
-    }
-    
     enum CodingKeys: String, CodingKey {
         case showOrganisation
         case offerId
@@ -134,26 +90,26 @@ struct CardData: Codable {
         case lowerworkex
         case upperworkex
         case monthlyCompensation = "monthly_compensation"
-        case hourlyCompensation = "hourly_compensation"
+//        case hourlyCompensation = "hourly_compensation"
         case monthlyCompensationId = "monthly_compensation_id"
-        case hourlyCompensationId = "hourly_compensation_id"
+//        case hourlyCompensationId = "hourly_compensation_id"
         case isRemote = "is_Remote"
-        case redirectUrl
-        case minScore
-        case minAge
-        case maxAge
+//        case redirectUrl
+//        case minScore
+//        case minAge
+//        case maxAge
         case locationCity = "location_city"
         case distance
         case isOrganic = "is_organic"
         case title
-        case industryTypeId = "industry_type_id"
-        case industryType = "industry_type"
+//        case industryTypeId = "industry_type_id"
+//        case industryType = "industry_type"
         case jobFunctionId = "job_function_id"
         case designationId = "designation_id"
         case designation
         case date
         case hasApplied
-        case needToRedirect
+//        case needToRedirect
         case jobSaved
         case isBusinessOpportunity
         case showRelocateModal
@@ -164,6 +120,48 @@ struct CardData: Codable {
         case postedAtRelative
         case hasLiked
         case userInfo
+    }
+    init(showOrganisation: Int?, offerId: Int?, userId: Int?, companyName: String?, offerTypeId: Int?, description: String?, url: String?, lowerworkex: Int?, upperworkex: Int?, monthlyCompensation: String?, hourlyCompensation: Any, monthlyCompensationId: Int?, hourlyCompensationId: Any, isRemote: Int?, redirectUrl: Any, minScore: Any, minAge: Any, maxAge: Any, locationCity: String?, distance: Double?, isOrganic: Int?, title: String?, industryTypeId: Any, industryType: Any, jobFunctionId: Int?, designationId: Int?, designation: String?, date: String?, hasApplied: Bool?, needToRedirect: Any, jobSaved: Bool?, isBusinessOpportunity: Bool?, showRelocateModal: Bool?, skills: [Skill]?, jobType: [JobType]?, displayCompensation: String?, relativeTime: String?, postedAtRelative: String?, hasLiked: Bool?, userInfo: UserInfo?) {
+        self.showOrganisation = showOrganisation
+        self.offerId = offerId
+        self.userId = userId
+        self.companyName = companyName
+        self.offerTypeId = offerTypeId
+        self.description = description
+        self.url = url
+        self.lowerworkex = lowerworkex
+        self.upperworkex = upperworkex
+        self.monthlyCompensation = monthlyCompensation
+//        self.hourlyCompensation = hourlyCompensation
+        self.monthlyCompensationId = monthlyCompensationId
+//        self.hourlyCompensationId = hourlyCompensationId
+        self.isRemote = isRemote
+//        self.redirectUrl = redirectUrl
+//        self.minScore = minScore
+//        self.minAge = minAge
+//        self.maxAge = maxAge
+        self.locationCity = locationCity
+        self.distance = distance
+        self.isOrganic = isOrganic
+        self.title = title
+//        self.industryTypeId = industryTypeId
+//        self.industryType = industryType
+        self.jobFunctionId = jobFunctionId
+        self.designationId = designationId
+        self.designation = designation
+        self.date = date
+        self.hasApplied = hasApplied
+//        self.needToRedirect = needToRedirect
+        self.jobSaved = jobSaved
+        self.isBusinessOpportunity = isBusinessOpportunity
+        self.showRelocateModal = showRelocateModal
+        self.skills = skills
+        self.jobType = jobType
+        self.displayCompensation = displayCompensation
+        self.relativeTime = relativeTime
+        self.postedAtRelative = postedAtRelative
+        self.hasLiked = hasLiked
+        self.userInfo = userInfo
     }
 }
 
@@ -185,7 +183,12 @@ struct JobType: Codable {
         case jobTypeId = "job_type_id"
         case jobType = "job_type"
     }
-    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.offerID = try container.decodeIfPresent(Int.self, forKey: .offerID)
+        self.jobTypeId = try container.decodeIfPresent(Int.self, forKey: .jobTypeId)
+        self.jobType = try container.decodeIfPresent(String.self, forKey: .jobType)
+    }
 }
 
 // MARK: - Skill
@@ -206,7 +209,12 @@ struct Skill: Codable {
         case skillId = "skill_id"
         case skill
     }
-
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.offerID = try container.decodeIfPresent(Int.self, forKey: .offerID)
+        self.skillId = try container.decodeIfPresent(Int.self, forKey: .skillId)
+        self.skill = try container.decodeIfPresent(String.self, forKey: .skill)
+    }
 }
 
 // MARK: - UserInfo
@@ -232,6 +240,14 @@ struct UserInfo: Codable {
         case imageId = "image_id"
         case score
         case isProfileVerified
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.userId = try container.decodeIfPresent(Int.self, forKey: .userId)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.imageId = try container.decodeIfPresent(String.self, forKey: .imageId)
+        self.score = try container.decodeIfPresent(Double.self, forKey: .score)
+        self.isProfileVerified = try container.decodeIfPresent(Bool.self, forKey: .isProfileVerified)
     }
 }
 
