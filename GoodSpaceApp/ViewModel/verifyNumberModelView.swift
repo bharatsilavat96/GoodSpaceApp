@@ -20,10 +20,10 @@ class VerifyNumberViewModel: ConnectionManagerDelegate {
     func verifyUser(withMobileNumber: String, deviceId: String, otp:String){
         let loginApiEndPoint = APIEndpoint.getOTP
         let body: [String: String] = ["number":withMobileNumber,"countryCode":"91","otp":otp]
-        connectionManager.startSession(endpoint: .verifyOTP, method: .post, parameters: body, deviceId: deviceId)
+        connectionManager.startSession(endpoint: .verifyOTP, method: .post, parameters: body)
     }
     
-    func didCompleteTask(for endpoint: APIEndpoint, with result: Result<Data, Error>, deviceId: String) {
+    func didCompleteTask(for endpoint: APIEndpoint, with result: Result<Data, Error>) {
         switch result {
         case .success(let data):
             do {

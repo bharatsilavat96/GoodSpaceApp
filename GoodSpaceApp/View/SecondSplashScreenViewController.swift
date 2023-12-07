@@ -20,6 +20,7 @@ class SecondSplashScreenViewController: UIViewController {
             if let secondSplashViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController {
                 secondSplashViewController.modalPresentationStyle = .fullScreen
                 secondSplashViewController.modalTransitionStyle = .partialCurl
+                UserDefaultsManager.shared.clearAuthToken()
                 self.navigationController?.pushViewController(secondSplashViewController, animated: true)
             }
         }

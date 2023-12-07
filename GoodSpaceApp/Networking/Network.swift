@@ -6,26 +6,38 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ConnectionManagerDelegate: AnyObject {
-    func didCompleteTask(for endpoint: APIEndpoint, with result: Result<Data, Error>, deviceId: String)
+    func didCompleteTask(for endpoint: APIEndpoint, with result: Result<Data, Error>)
 }
 
 struct APIConfig {
-    static let baseURL = "https://api.ourgoodspace.com/api/d2/"
+    static let baseURL = "https://api.ourgoodspace.com/"
 }
 
 class ConnectionManager {
     weak var delegate: ConnectionManagerDelegate?
+    private var deviceId: String?
     
     enum HTTPMethod: String {
         case get = "GET"
         case post = "POST"
     }
     
-    init() {}
+    init() {
+        deviceId = getDeviceID()
+    }
+    private func getDeviceID() -> String {
+            if let identifierForVendor = UIDevice.current.identifierForVendor {
+                return identifierForVendor.uuidString
+            } else {
+                // Fallback to a default value or handle the case when identifierForVendor is nil
+                return "DefaultDeviceID"
+            }
+        }
     
-    func startSession(endpoint: APIEndpoint, method: HTTPMethod, parameters: [String: Any]? = nil, deviceId: String? = nil) {
+    func startSession(endpoint: APIEndpoint, method: HTTPMethod, parameters: [String: Any]? = nil) {
         guard var components = URLComponents(string: APIConfig.baseURL + endpoint.rawValue) else { return }
         
         if method == .get, let params = parameters {
@@ -43,15 +55,15 @@ class ConnectionManager {
             
             if let deviceId = deviceId {
                 print("Device Id at Connection Manager : \(deviceId)")
-                request.setValue(deviceId, forHTTPHeaderField: "device-id")
+                request.setValue(self.deviceId, forHTTPHeaderField: "device-id")
                 request.setValue("web", forHTTPHeaderField: "device-type")
             }
             
-            if let parameters = parameters, let deviceId = deviceId {
+            if let parameters = parameters{
                 do {
                     request.httpBody = try JSONSerialization.data(withJSONObject: parameters)
                 } catch {
-                    delegate?.didCompleteTask(for: endpoint, with: .failure(error), deviceId: deviceId)
+                    delegate?.didCompleteTask(for: endpoint, with: .failure(error))
                     return
                 }
             }
@@ -60,17 +72,17 @@ class ConnectionManager {
         
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
-                self.delegate?.didCompleteTask(for: endpoint, with: .failure(error), deviceId: deviceId!)
+                self.delegate?.didCompleteTask(for: endpoint, with: .failure(error))
                 return
             }
             
             guard let data = data else {
                 let error = NSError(domain: "Invalid data", code: 0, userInfo: nil)
-                self.delegate?.didCompleteTask(for: endpoint, with: .failure(error), deviceId: deviceId!)
+                self.delegate?.didCompleteTask(for: endpoint, with: .failure(error))
                 return
             }
             
-            self.delegate?.didCompleteTask(for: endpoint, with: .success(data), deviceId: deviceId!)
+            self.delegate?.didCompleteTask(for: endpoint, with: .success(data))
         }
         task.resume()
     }
@@ -78,8 +90,9 @@ class ConnectionManager {
 
 
 enum APIEndpoint: String {
-    case getOTP = "auth/v2/login"
-    case verifyOTP = "auth/verifyotp"
-    case premiumProducts = "manage_products/getInActiveProducts"
-    case activePremiumProducts = "manage_products/getActiveProducts"
+    case getOTP = "api/d2/auth/v2/login"
+    case verifyOTP = "api/d2/auth/verifyotp"
+    case premiumProducts = "api/d2/manage_products/getInActiveProducts"
+    case activePremiumProducts = "api/d2/manage_products/getActiveProducts"
+    case jobsList = "api/d2/member/dashboard/feed"
 }

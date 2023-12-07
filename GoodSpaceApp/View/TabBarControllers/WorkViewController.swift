@@ -22,7 +22,7 @@ class WorkViewController: UIViewController,JobsViewModelDelegate {
         
         setupUI()
     }
-    func didFinishVerify(with result: Result<Datum, Error>) {
+    func didFinishVerify(with result: Result<JobModel, Error>) {
         switch result {
         case .success(let data):
             print("Comapny Name :",data.cardData?.companyName)
