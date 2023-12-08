@@ -11,14 +11,13 @@ class JobsViewModel: ConnectionManagerDelegate{
     
     private let connectionManager: ConnectionManager
     weak var delegate: JobsViewModelDeleaget?
-    var decodedData: [String: Any]?
     
     init(){
         self.connectionManager = ConnectionManager()
         self.connectionManager.delegate = self
     }
     
-    func getUserData(withHeader: [String:String]){
+    func getUserData(withHeader: [String:String], completion: @escaping () -> Void){
 
         connectionManager.startSession(endpoint: .jobsList, method: .get,customHeaders: withHeader)
 
@@ -30,18 +29,18 @@ class JobsViewModel: ConnectionManagerDelegate{
             do {
                 let decoder = JSONDecoder()
                 let verifyNumberResponse = try decoder.decode(ApiResponse.self, from: data)
-                delegate?.didFinishFinding(with: .success(verifyNumberResponse))
+                delegate?.didFinishFindingJobs(with: .success(verifyNumberResponse))
             } catch let decodingError {
                 print("Error decoding JSON: \(decodingError)")
-                delegate?.didFinishFinding(with: .failure(decodingError))
+                delegate?.didFinishFindingJobs(with: .failure(decodingError))
             }
         case .failure(let error):
             print("Error fetching data: \(error)")
-            delegate?.didFinishFinding(with: .failure(error))
+            delegate?.didFinishFindingJobs(with: .failure(error))
         }
     }
 }
 protocol JobsViewModelDeleaget: AnyObject {
-    func didFinishFinding(with result: Result<ApiResponse, Error>)
+    func didFinishFindingJobs(with result: Result<ApiResponse, Error>)
 }
 

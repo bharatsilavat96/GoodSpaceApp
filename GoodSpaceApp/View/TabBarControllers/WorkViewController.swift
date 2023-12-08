@@ -7,14 +7,15 @@
 
 import UIKit
 
-class WorkViewController: UIViewController,JobsViewModelDeleaget {
+class WorkViewController: UIViewController,JobsViewModelDeleaget, InActiveJobsViewModelDelegate {
     
     @IBOutlet weak var futureCollectionView: UICollectionView!
     @IBOutlet weak var jobsTableView: UITableView!
     @IBOutlet weak var jobSearchBar: UISearchBar!
     
     private var jobsViewModel: JobsViewModel?
-    private var Authorization: String?
+    private var inActiveViewModel: InActiveProductsViewModel?
+    private var authorization: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +23,12 @@ class WorkViewController: UIViewController,JobsViewModelDeleaget {
     }
     
     private func setupUI(){
-       
-        // Initialize the jobsViewModel
+        
+        authorization  = UserDefaultsManager.shared.getAuthToken()
         jobsViewModel = JobsViewModel()
         jobsViewModel?.delegate = self
+        inActiveViewModel = InActiveProductsViewModel()
+        inActiveViewModel?.delegate = self
         
         futureCollectionView.dataSource = self
         futureCollectionView.delegate = self
@@ -37,17 +40,49 @@ class WorkViewController: UIViewController,JobsViewModelDeleaget {
         super.viewDidAppear(animated)
         handleApiafterSecond()
     }
-    func handleApiafterSecond(){
-        Authorization  = UserDefaultsManager.shared.getAuthToken()
-        if let Authorization = Authorization {
-            let customHeader = [ "Authorization" : Authorization]
-            jobsViewModel?.getUserData(withHeader: customHeader)
-        }else {
+    
+    func handleApiafterSecond() {
+        // Create a DispatchGroup
+        let dispatchGroup = DispatchGroup()
+        
+        if let authorization = authorization {
+            let customHeader = ["Authorization": authorization]
+            
+            // Enter the DispatchGroup before starting the first API call
+            dispatchGroup.enter()
+            jobsViewModel?.getUserData(withHeader: customHeader) {
+                // Leave the DispatchGroup when the first API call is completed
+                dispatchGroup.leave()
+            }
+            
+            // Enter the DispatchGroup before starting the second API call
+            dispatchGroup.enter()
+            inActiveViewModel?.getInactiveJobsData(withHeader: customHeader) {
+                // Leave the DispatchGroup when the second API call is completed
+                dispatchGroup.leave()
+            }
+        } else {
             print("Error Getting Access Token")
+        }
+        
+        // Notify when all tasks in the DispatchGroup are completed
+        dispatchGroup.notify(queue: .main) {
+            // Perform any action that needs to be done after both API calls are completed
+            print("Both API calls are completed")
         }
     }
     
-    func didFinishFinding(with result: Result<ApiResponse, Error>) {
+    
+    func didFindInActiveProduct(with result: Result<InActiveProductModel, Error>) {
+        switch result {
+        case .success(let data):
+            print(data.data?[0].displayName)
+        case .failure(let error):
+            print("Error: \(error)")
+        }
+    }
+    
+    func didFinishFindingJobs(with result: Result<ApiResponse, Error>) {
         switch result {
         case .success(let data):
             print(data.data?[0].type)
