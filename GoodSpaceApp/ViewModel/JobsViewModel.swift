@@ -10,7 +10,7 @@ import Foundation
 class JobsViewModel: ConnectionManagerDelegate{
     
     private let connectionManager: ConnectionManager
-    weak var delegate: JobsViewModelDelegate?
+    weak var delegate: JobsViewModelDeleaget?
     var decodedData: [String: Any]?
     
     init(){
@@ -25,21 +25,23 @@ class JobsViewModel: ConnectionManagerDelegate{
     }
     
     func didCompleteTask(for endpoint: APIEndpoint, with result: Result<Data, Error>) {
-        switch result{
+        switch result {
         case .success(let data):
             do {
-                if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    decodedData = jsonObject
-                    delegate?.didFinishVerify(with: decodedData!)
-                }
-            } catch{
-                print("decodingError")
+                let decoder = JSONDecoder()
+                let verifyNumberResponse = try decoder.decode(ApiResponse.self, from: data)
+                delegate?.didFinishFinding(with: .success(verifyNumberResponse))
+            } catch let decodingError {
+                print("Error decoding JSON: \(decodingError)")
+                delegate?.didFinishFinding(with: .failure(decodingError))
             }
         case .failure(let error):
-            print("Error: \(error)")
+            print("Error fetching data: \(error)")
+            delegate?.didFinishFinding(with: .failure(error))
         }
     }
 }
-protocol JobsViewModelDelegate: AnyObject {
-    func didFinishVerify(with result: [String:Any])
+protocol JobsViewModelDeleaget: AnyObject {
+    func didFinishFinding(with result: Result<ApiResponse, Error>)
 }
+

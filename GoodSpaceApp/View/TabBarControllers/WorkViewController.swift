@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WorkViewController: UIViewController,JobsViewModelDelegate {
+class WorkViewController: UIViewController,JobsViewModelDeleaget {
     
     @IBOutlet weak var futureCollectionView: UICollectionView!
     @IBOutlet weak var jobsTableView: UITableView!
@@ -47,9 +47,15 @@ class WorkViewController: UIViewController,JobsViewModelDelegate {
         }
     }
     
-    func didFinishVerify(with result: [String : Any]) {
-        print(result.values)
+    func didFinishFinding(with result: Result<ApiResponse, Error>) {
+        switch result {
+        case .success(let data):
+            print(data.data?[0].type)
+        case .failure(let error):
+            print("Error: \(error)")
+        }
     }
+    
     
 }
 extension WorkViewController: UICollectionViewDataSource{
