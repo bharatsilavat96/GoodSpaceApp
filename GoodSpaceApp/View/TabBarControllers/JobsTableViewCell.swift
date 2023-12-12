@@ -36,6 +36,7 @@ class JobsTableViewCell: UITableViewCell {
     }
     
     func setupUI(){
+        userProfileImageView.roundCorners(18, borderWidth: 0, borderColor: .clear)
         monthyCompensationView.roundCorners(3, borderWidth: 1, borderColor: UIColor(hex: "#1E9915"))
         monthlyCompensationLabel.textColor = UIColor(hex: "#1E9915")
         isLikedView.roundCorners(3, borderWidth: 1, borderColor: UIColor(hex: "#026AA2"))

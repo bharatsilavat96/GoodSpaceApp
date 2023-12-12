@@ -16,6 +16,8 @@ class WorkViewController: UIViewController,JobsViewModelDeleaget, InActiveJobsVi
     private var jobsViewModel: JobsViewModel?
     private var inActiveViewModel: InActiveProductsViewModel?
     private var authorization: String?
+    private var jobData: [Job]?
+    private var premioumFeature: [ProductData]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,7 @@ class WorkViewController: UIViewController,JobsViewModelDeleaget, InActiveJobsVi
     
     private func setupUI(){
         
-        authorization  = UserDefaultsManager.shared.getAuthToken()
+        authorization = UserDefaultsManager.shared.getAuthToken()
         jobsViewModel = JobsViewModel()
         jobsViewModel?.delegate = self
         inActiveViewModel = InActiveProductsViewModel()
@@ -48,26 +50,19 @@ class WorkViewController: UIViewController,JobsViewModelDeleaget, InActiveJobsVi
         if let authorization = authorization {
             let customHeader = ["Authorization": authorization]
             
-            // Enter the DispatchGroup before starting the first API call
             dispatchGroup.enter()
             jobsViewModel?.getUserData(withHeader: customHeader) {
-                // Leave the DispatchGroup when the first API call is completed
                 dispatchGroup.leave()
             }
             
-            // Enter the DispatchGroup before starting the second API call
             dispatchGroup.enter()
             inActiveViewModel?.getInactiveJobsData(withHeader: customHeader) {
-                // Leave the DispatchGroup when the second API call is completed
                 dispatchGroup.leave()
             }
         } else {
             print("Error Getting Access Token")
         }
-        
-        // Notify when all tasks in the DispatchGroup are completed
         dispatchGroup.notify(queue: .main) {
-            // Perform any action that needs to be done after both API calls are completed
             print("Both API calls are completed")
         }
     }
@@ -76,7 +71,12 @@ class WorkViewController: UIViewController,JobsViewModelDeleaget, InActiveJobsVi
     func didFindInActiveProduct(with result: Result<InActiveProductModel, Error>) {
         switch result {
         case .success(let data):
-            print(data.data?[0].displayName)
+//            print(data.data?[0].displayName)
+            premioumFeature = data.data
+            DispatchQueue.main.async {
+                self.futureCollectionView.reloadData()
+            }
+//            jobData = data.
         case .failure(let error):
             print("Error: \(error)")
         }
@@ -85,7 +85,10 @@ class WorkViewController: UIViewController,JobsViewModelDeleaget, InActiveJobsVi
     func didFinishFindingJobs(with result: Result<ApiResponse, Error>) {
         switch result {
         case .success(let data):
-            print(data.data?[0].type)
+            DispatchQueue.main.async {
+                self.jobsTableView.reloadData()
+            }
+            jobData = data.data
         case .failure(let error):
             print("Error: \(error)")
         }
@@ -100,11 +103,13 @@ extension WorkViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return premioumFeature?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FutureCollectionViewCell", for: indexPath) as! FutureCollectionViewCell
+        cell.candidateNameLabe.text = premioumFeature?[indexPath.row].displayName
+        cell.candidateProfileNameLabel.text = premioumFeature?[indexPath.row].productName
         cell.layer.masksToBounds = true
         cell.roundCorners(5, borderWidth: 1, borderColor: UIColor(hex: "#297BCA"))
         return cell
@@ -121,16 +126,32 @@ extension WorkViewController: UICollectionViewDelegateFlowLayout {
 extension WorkViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return jobData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JobsTableViewCell", for: indexPath) as! JobsTableViewCell
         cell.contentView.roundCorners(10, borderWidth: 1, borderColor: UIColor(hex: "#C4C4C466",alpha: 0.4))
+        let getToData = jobData?[indexPath.row].cardData
+        cell.addressLabel.text = getToData?.locationCity
+        cell.companyNameLabel.text = getToData?.companyName
+        cell.jobProfileLabel.text = getToData?.title
+        cell.monthlyCompensationLabel.text = getToData?.displayCompensation
+        cell.userNameLabel.text = getToData?.userInfo.name
+        cell.uploadedDateLabel.text = getToData?.postedAtRelative
+        if let imageURLString = getToData?.userInfo.imageID {
+                ImageDownloader.downloadImage(imageURLString) { (image, _) in
+                    DispatchQueue.main.async {
+                        cell.userProfileImageView.image = image
+                        cell.setNeedsLayout()
+                    }
+                }
+            }
+        
         return cell
     }
 }

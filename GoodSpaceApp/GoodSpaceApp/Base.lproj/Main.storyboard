@@ -586,6 +586,12 @@
                                                     </constraints>
                                                 </collectionViewCellContentView>
                                                 <size key="customSize" width="160" height="140"/>
+                                                <connections>
+                                                    <outlet property="candidateImageView" destination="pZq-xv-cvi" id="lTt-SV-slI"/>
+                                                    <outlet property="candidateNameLabe" destination="HY4-Ah-Lan" id="7Sy-0v-iRN"/>
+                                                    <outlet property="candidateProfileNameLabel" destination="RV1-eg-UQf" id="qXb-JP-E7v"/>
+                                                    <outlet property="isCandidatePremiumImageView" destination="8Tn-YM-Frc" id="PZX-6L-Ihv"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
